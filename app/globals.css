@@ -16,7 +16,11 @@
 
   /* Supporting neutrals */
   --color-loam: #2a1f17;
-  --color-parchment: #f5f0e2;
+  /* Page background — set to white per client request (was #f5f0e2 warm
+     cream in the original Visual Design System). Variable name kept as
+     "parchment" to avoid renaming every reference across the codebase;
+     the value itself is what actually renders. */
+  --color-parchment: #ffffff;
   --color-white: #ffffff;
 
   /* Tints */
