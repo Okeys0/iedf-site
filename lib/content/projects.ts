@@ -43,12 +43,12 @@ export const activeProjects: Project[] = [
     title: "OKOBI Collaboration",
     summary: "With Imo State's Office of the Chief Economic Advisor.",
     status: "active",
-    // Genuine sourcing note: this IS an authentic screenshot from an
-    // official Imo State government OKOBI presentation — unlike the two
-    // placeholder photos above, no "not confirmed" caveat needed here.
+    // Genuine sourcing note: this is the official OKOBI (One Kindred, One
+    // Business Initiative) program logo/branding — authentic, no "not
+    // confirmed" caveat needed, unlike the two placeholder photos above.
     image: {
       src: "/images/project-okobi.jpg",
-      alt: "Official Imo State government OKOBI (One Kindred, One Business Initiative) presentation title slide",
+      alt: "OKOBI — One Kindred, One Business Initiative — official program logo",
     },
   },
 ];
