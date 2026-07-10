@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+/*
+  IEDF Design Tokens
+  Sourced from: 04-IEDF-Visual-Design-System.md
+  Colors trued up to the confirmed IEDF logo (forest green + gold).
+*/
+
+:root {
+  /* Brand colors — sourced from logo */
+  --color-forest: #1a4a2e;
+  --color-palm: #5a9e47;
+  --color-gold: #c9982f;
+  --color-soil: #6b4226;
+  --color-river: #3e7db8;
+
+  /* Supporting neutrals */
+  --color-loam: #2a1f17;
+  --color-parchment: #f5f0e2;
+  --color-white: #ffffff;
+
+  /* Tints */
+  --color-forest-tint: #e8efea;
+  --color-gold-tint: #faf0dc;
+
+  /* Accessible variant — darkened gold for text on gold-tint backgrounds (WCAG AA) */
+  --color-gold-text: #8a6a1f;
+
+  --radius-base: 7px;
+}
+
+@theme inline {
+  --color-forest: var(--color-forest);
+  --color-palm: var(--color-palm);
+  --color-gold: var(--color-gold);
+  --color-soil: var(--color-soil);
+  --color-river: var(--color-river);
+  --color-loam: var(--color-loam);
+  --color-parchment: var(--color-parchment);
+  --color-forest-tint: var(--color-forest-tint);
+  --color-gold-tint: var(--color-gold-tint);
+  --color-gold-text: var(--color-gold-text);
+
+  --font-display: var(--font-zilla-slab);
+  --font-body: var(--font-work-sans);
+  --font-data: var(--font-plex-mono);
+
+  --radius-base: var(--radius-base);
+}
+
+body {
+  background: var(--color-parchment);
+  color: var(--color-loam);
+  font-family: var(--font-body), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 700;
+}
+
+/* Skip-to-content link — visible only on keyboard focus (WCAG 2.2 AA) */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--color-forest);
+  color: white;
+  padding: 10px 16px;
+  z-index: 100;
+  border-radius: 0 0 var(--radius-base) 0;
+}
+.skip-link:focus {
+  left: 0;
+}

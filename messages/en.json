@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "about": "About",
+    "aboutIkeduru": "About Ikeduru",
+    "projects": "Projects",
+    "joinUs": "Join Us",
+    "news": "News",
+    "contact": "Contact",
+    "skipToContent": "Skip to content"
+  },
+  "home": {
+    "heroHeadline": "A self-sustaining Ikeduru, built by its own people",
+    "heroSubhead": "IEDF brings together Ikeduru people at home and in the diaspora, committed to advancing Ikeduru's development through private-sector led investment, community advocacy, and real economic development.",
+    "ctaJoin": "Join Us",
+    "ctaLearnMore": "Learn More",
+    "milestoneFounded": "Founded",
+    "milestoneFoundedDate": "Jan 2025",
+    "milestoneInaugurated": "Executives Inaugurated",
+    "milestoneInauguratedDate": "Apr 2026",
+    "milestoneToday": "Today",
+    "milestoneTodayLabel": "Active initiatives underway",
+    "featuredProjectsTitle": "Featured Projects",
+    "momentumTitle": "Momentum Highlights",
+    "newsletterTitle": "Stay Connected",
+    "newsletterSubtitle": "Get updates on IEDF's progress, delivered a couple of times a month.",
+    "newsletterPlaceholder": "you@example.com",
+    "newsletterButton": "Subscribe",
+    "latestNewsTitle": "Latest News"
+  },
+  "footer": {
+    "apolitical": "IEDF is a non-governmental, non-profit, and apolitical organization.",
+    "privacy": "Privacy Policy",
+    "rights": "All rights reserved."
+  },
+  "tags": {
+    "active": "Active",
+    "planned": "Planned"
+  }
+}

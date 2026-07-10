@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "about": "Maka Anyị",
+    "aboutIkeduru": "Maka Ikeduru",
+    "projects": "Ọrụ Ndị Ọzọ",
+    "joinUs": "Sonyere",
+    "news": "Akụkọ",
+    "contact": "Kpọtụrụ Anyị",
+    "skipToContent": "Gafee gaa n'ọdịnaya"
+  },
+  "home": {
+    "heroHeadline": "Ikeduru ga-adị onwe ya, nke ndị nke ya wuru",
+    "heroSubhead": "IEDF na-ejikọta ụmụ Ikeduru bi n'ụlọ na ndị nọ na mba ọzọ, ndị kwesiri ikwu ha onwe ha n'ịkwalite mmepe Ikeduru site n'itinye ego ndị ahịa nzuzo na-eduga, nkwado obodo, na ezigbo mmepe akụ na ụba.",
+    "ctaJoin": "Sonyere",
+    "ctaLearnMore": "Mụtakwuo",
+    "milestoneFounded": "Ntọala",
+    "milestoneFoundedDate": "Jenụwarị 2025",
+    "milestoneInaugurated": "Ntinye Ndị Isi Ọrụ",
+    "milestoneInauguratedDate": "Eprel 2026",
+    "milestoneToday": "Taa",
+    "milestoneTodayLabel": "Ọrụ ndị na-aga n'ihu ugbu a",
+    "featuredProjectsTitle": "Ọrụ A Na-Egosipụta",
+    "momentumTitle": "Ihe Ndị Anyị Rụzuru",
+    "newsletterTitle": "Nọrọ Njikọ",
+    "newsletterSubtitle": "Nweta ozi banyere ọganihu IEDF, e nyere ugboro abụọ n'ọnwa.",
+    "newsletterPlaceholder": "you@example.com",
+    "newsletterButton": "Debanye Aha",
+    "latestNewsTitle": "Akụkọ Ọhụrụ"
+  },
+  "footer": {
+    "apolitical": "IEDF bụ nzukọ na-abụghị nke gọọmentị, na-abụghị nke ọdịmma onwe, na-abụghị nke ndọrọ ndọrọ ọchịchị.",
+    "privacy": "Amụma Nzuzo",
+    "rights": "Ikike niile echedoro."
+  },
+  "tags": {
+    "active": "Na-arụ ọrụ",
+    "planned": "Ezubere"
+  }
+}
