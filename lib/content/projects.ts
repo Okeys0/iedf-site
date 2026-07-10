@@ -49,6 +49,7 @@ export const activeProjects: Project[] = [
     image: {
       src: "/images/project-okobi.jpg",
       alt: "OKOBI — One Kindred, One Business Initiative — official program logo",
+      fit: "contain",
     },
   },
 ];

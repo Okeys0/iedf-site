@@ -14,6 +14,13 @@ export type Project = {
   image?: {
     src: string;
     alt: string;
+    /**
+     * "cover" (default) fills the slot, cropping edges as needed —
+     * good for photographic content. "contain" shows the whole image
+     * with no cropping — use for logos/lockups where every part
+     * (e.g. a tagline strip) must always stay visible.
+     */
+    fit?: "cover" | "contain";
   };
 };
 
@@ -21,12 +28,15 @@ export function ProjectCard({ project }: { project: Project }) {
   return (
     <div className="overflow-hidden rounded-[7px] border border-black/10 bg-white">
       {project.image ? (
-        <div className="relative h-[100px] w-full">
+        <div
+          className="relative h-[100px] w-full"
+          style={project.image.fit === "contain" ? { background: "rgb(5, 10, 48)" } : undefined}
+        >
           <Image
             src={project.image.src}
             alt={project.image.alt}
             fill
-            className="object-cover"
+            className={project.image.fit === "contain" ? "object-contain" : "object-cover"}
           />
         </div>
       ) : (
