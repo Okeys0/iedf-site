@@ -30,7 +30,7 @@ export default async function HomePage({
   return (
     <>
       {/* Hero — large logo mark anchors the left side, text/CTA/timeline on the right */}
-      <section className="relative overflow-hidden border-b border-black/10 px-6 py-14">
+      <section className="relative overflow-hidden border-b border-black/10 bg-white px-6 py-14">
         <div className="relative z-10 mx-auto grid max-w-[1080px] items-center gap-10 md:grid-cols-[340px_1fr]">
           <div className="mx-auto w-full max-w-[280px] md:max-w-none">
             <Image
