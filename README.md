@@ -34,7 +34,7 @@ Visit `http://localhost:3000` (redirects to `/en`).
 | Design tokens (color, type, spacing) | **Real** — matches Visual Design System doc exactly |
 | Home page | **Real** — fully built: hero, Milestone Line, featured projects, stats, newsletter CTA |
 | About page | **Structurally real**, narrative/bio content placeholder (needs founding members / exec committee input per Content Outline) |
-| Projects & Initiatives page | **Real** — active initiatives + Strategic Roadmap band, using local content stub |
+| Projects & Initiatives page | **Real** — active initiatives + Strategic Roadmap band, using local content stub. ⚠️ Industrial Cluster card has a placeholder photo that is **not confirmed to depict the actual Atta-Inyishi-Amaimo site** — swap before launch (see `lib/content/projects.ts`) |
 | About Ikeduru page | **Structural only** — content intentionally deferred pending named external sourcing (see Content Outline Section 3; Development Roadmap risk notes) |
 | Join Us page | **Real forms**, placeholder body copy |
 | News page | **Structural only** — populates once Sanity `newsPost` documents exist |

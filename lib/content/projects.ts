@@ -16,6 +16,13 @@ export const activeProjects: Project[] = [
     title: "Atta-Inyishi-Amaimo Industrial Cluster",
     summary: "Government-designated development site for agro-allied industry.",
     status: "active",
+    // NOTE: placeholder/illustrative image, not confirmed to depict the
+    // actual Atta-Inyishi-Amaimo site — see README caveat. Swap for real
+    // site photography before launch.
+    image: {
+      src: "/images/project-industrial-cluster.jpg",
+      alt: "Illustrative industrial cluster imagery — not confirmed to depict the actual Atta-Inyishi-Amaimo site",
+    },
   },
   {
     slug: "gas-to-power",
