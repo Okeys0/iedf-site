@@ -18,7 +18,7 @@ export async function Header({ locale }: { locale: string }) {
     <header className="border-b border-black/10">
       <div className="mx-auto flex max-w-[1080px] flex-wrap items-center justify-between gap-4 px-6 py-4">
         <Link href={`/${locale}`} className="font-display text-lg font-bold text-[var(--color-forest)]">
-          IEDF
+          Home
         </Link>
 
         <nav className="flex flex-wrap gap-5 text-sm font-semibold" aria-label="Primary">

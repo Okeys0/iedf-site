@@ -31,24 +31,6 @@ export default async function HomePage({
     <>
       {/* Hero — large logo mark anchors the left side, text/CTA/timeline on the right */}
       <section className="relative overflow-hidden border-b border-black/10 px-6 py-14">
-        {/*
-          Decorative watermark — Ikeduru cultural dance imagery, right side.
-          Purely decorative: aria-hidden, non-interactive. At 25% opacity,
-          double-check text contrast over this area still clears WCAG 2.2 AA
-          if the milestone timeline or any text ever overlaps it directly.
-          Source image is low-resolution (265x183) — slight blur softens
-          that at this size, but a higher-res source would look crisper.
-        */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-y-0 right-0 z-0 w-[55%] opacity-25 blur-[1px] sm:w-[45%]"
-          style={{
-            backgroundImage: "url(/images/watermark-dance.png)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
-
         <div className="relative z-10 mx-auto grid max-w-[1080px] items-center gap-10 md:grid-cols-[340px_1fr]">
           <div className="mx-auto w-full max-w-[280px] md:max-w-none">
             <Image
@@ -59,19 +41,37 @@ export default async function HomePage({
             />
           </div>
 
-          <div className="text-center md:text-left">
-            <h1 className="mb-3 text-3xl sm:text-4xl">{t("heroHeadline")}</h1>
-            <p className="mb-7 text-[15px] text-[var(--color-soil)]">{t("heroSubhead")}</p>
-            <div className="mb-10 flex justify-center gap-3 md:justify-start">
-              <Button href={`/${locale}/join-us`} variant="primary">
-                {t("ctaJoin")}
-              </Button>
-              <Button href={`/${locale}/about`} variant="secondary">
-                {t("ctaLearnMore")}
-              </Button>
-            </div>
-            <div className="mx-auto max-w-[480px] md:mx-0">
-              <MilestoneLine points={milestones} />
+          {/*
+            Text column also hosts the decorative watermark, absolutely
+            filling this same grid cell behind the text (z-0) — this keeps
+            the watermark's left edge locked exactly to where the text
+            column begins, at any viewport width, without fragile
+            calc()/vw math that some rendering engines don't support.
+          */}
+          <div className="relative">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 z-0 hidden opacity-15 blur-[1px] md:block"
+              style={{
+                backgroundImage: "url(/images/watermark-dance.png)",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            />
+            <div className="relative z-10 text-center md:text-left">
+              <h1 className="mb-3 text-3xl sm:text-4xl">{t("heroHeadline")}</h1>
+              <p className="mb-7 text-[15px] text-[var(--color-soil)]">{t("heroSubhead")}</p>
+              <div className="mb-10 flex justify-center gap-3 md:justify-start">
+                <Button href={`/${locale}/join-us`} variant="primary">
+                  {t("ctaJoin")}
+                </Button>
+                <Button href={`/${locale}/about`} variant="secondary">
+                  {t("ctaLearnMore")}
+                </Button>
+              </div>
+              <div className="mx-auto max-w-[480px] md:mx-0">
+                <MilestoneLine points={milestones} />
+              </div>
             </div>
           </div>
         </div>
