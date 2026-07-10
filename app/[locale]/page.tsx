@@ -30,8 +30,26 @@ export default async function HomePage({
   return (
     <>
       {/* Hero — large logo mark anchors the left side, text/CTA/timeline on the right */}
-      <section className="border-b border-black/10 px-6 py-14">
-        <div className="mx-auto grid max-w-[1080px] items-center gap-10 md:grid-cols-[340px_1fr]">
+      <section className="relative overflow-hidden border-b border-black/10 px-6 py-14">
+        {/*
+          Decorative watermark — Ikeduru cultural dance imagery, right side.
+          Purely decorative: aria-hidden, non-interactive. At 25% opacity,
+          double-check text contrast over this area still clears WCAG 2.2 AA
+          if the milestone timeline or any text ever overlaps it directly.
+          Source image is low-resolution (265x183) — slight blur softens
+          that at this size, but a higher-res source would look crisper.
+        */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 right-0 z-0 w-[55%] opacity-25 blur-[1px] sm:w-[45%]"
+          style={{
+            backgroundImage: "url(/images/watermark-dance.png)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+
+        <div className="relative z-10 mx-auto grid max-w-[1080px] items-center gap-10 md:grid-cols-[340px_1fr]">
           <div className="mx-auto w-full max-w-[280px] md:max-w-none">
             <Image
               src={logoFull}
