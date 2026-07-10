@@ -4,7 +4,7 @@ import { Button } from "@/components/Button";
 import { MilestoneLine } from "@/components/MilestoneLine";
 import { ProjectCard } from "@/components/ProjectCard";
 import { activeProjects } from "@/lib/content/projects";
-import logoMarkLarge from "@/public/images/logo-mark-large.png";
+import logoFull from "@/public/images/logo-full-transparent.png";
 
 export default async function HomePage({
   params,
@@ -34,8 +34,8 @@ export default async function HomePage({
         <div className="mx-auto grid max-w-[1080px] items-center gap-10 md:grid-cols-[340px_1fr]">
           <div className="mx-auto w-full max-w-[280px] md:max-w-none">
             <Image
-              src={logoMarkLarge}
-              alt="IEDF — Ikeduru Economic Development Forum"
+              src={logoFull}
+              alt="IEDF — Ikeduru Economic Development Forum: Collaborate. Innovate. Invest. Prosper."
               className="h-auto w-full"
               priority
             />
