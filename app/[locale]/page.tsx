@@ -1,8 +1,10 @@
 import { getTranslations } from "next-intl/server";
+import Image from "next/image";
 import { Button } from "@/components/Button";
 import { MilestoneLine } from "@/components/MilestoneLine";
 import { ProjectCard } from "@/components/ProjectCard";
 import { activeProjects } from "@/lib/content/projects";
+import logoMarkLarge from "@/public/images/logo-mark-large.png";
 
 export default async function HomePage({
   params,
@@ -27,21 +29,32 @@ export default async function HomePage({
 
   return (
     <>
-      {/* Hero */}
-      <section className="border-b border-black/10 px-6 py-16 text-center">
-        <div className="mx-auto max-w-[720px]">
-          <h1 className="mb-3 text-3xl sm:text-4xl">{t("heroHeadline")}</h1>
-          <p className="mb-7 text-[15px] text-[var(--color-soil)]">{t("heroSubhead")}</p>
-          <div className="mb-10 flex justify-center gap-3">
-            <Button href={`/${locale}/join-us`} variant="primary">
-              {t("ctaJoin")}
-            </Button>
-            <Button href={`/${locale}/about`} variant="secondary">
-              {t("ctaLearnMore")}
-            </Button>
+      {/* Hero — large logo mark anchors the left side, text/CTA/timeline on the right */}
+      <section className="border-b border-black/10 px-6 py-14">
+        <div className="mx-auto grid max-w-[1080px] items-center gap-10 md:grid-cols-[340px_1fr]">
+          <div className="mx-auto w-full max-w-[280px] md:max-w-none">
+            <Image
+              src={logoMarkLarge}
+              alt="IEDF — Ikeduru Economic Development Forum"
+              className="h-auto w-full"
+              priority
+            />
           </div>
-          <div className="mx-auto max-w-[480px]">
-            <MilestoneLine points={milestones} />
+
+          <div className="text-center md:text-left">
+            <h1 className="mb-3 text-3xl sm:text-4xl">{t("heroHeadline")}</h1>
+            <p className="mb-7 text-[15px] text-[var(--color-soil)]">{t("heroSubhead")}</p>
+            <div className="mb-10 flex justify-center gap-3 md:justify-start">
+              <Button href={`/${locale}/join-us`} variant="primary">
+                {t("ctaJoin")}
+              </Button>
+              <Button href={`/${locale}/about`} variant="secondary">
+                {t("ctaLearnMore")}
+              </Button>
+            </div>
+            <div className="mx-auto max-w-[480px] md:mx-0">
+              <MilestoneLine points={milestones} />
+            </div>
           </div>
         </div>
       </section>
