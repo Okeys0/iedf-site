@@ -29,12 +29,27 @@ export const activeProjects: Project[] = [
     title: "Gas-to-Power Project",
     summary: "Startup gas-to-electricity generation for the cluster.",
     status: "active",
+    // NOTE: placeholder/illustrative image, not confirmed to depict the
+    // actual Ikeduru gas-to-power equipment — same caveat as the
+    // Industrial Cluster image above. Swap for real site photography
+    // before launch.
+    image: {
+      src: "/images/project-gas-to-power.jpg",
+      alt: "Illustrative gas-to-power equipment imagery — not confirmed to depict the actual Ikeduru project site",
+    },
   },
   {
     slug: "okobi-collaboration",
     title: "OKOBI Collaboration",
     summary: "With Imo State's Office of the Chief Economic Advisor.",
     status: "active",
+    // Genuine sourcing note: this IS an authentic screenshot from an
+    // official Imo State government OKOBI presentation — unlike the two
+    // placeholder photos above, no "not confirmed" caveat needed here.
+    image: {
+      src: "/images/project-okobi.jpg",
+      alt: "Official Imo State government OKOBI (One Kindred, One Business Initiative) presentation title slide",
+    },
   },
 ];
 
