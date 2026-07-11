@@ -35,7 +35,7 @@ Visit `http://localhost:3000` (redirects to `/en`).
 | Home page | **Real** — fully built: hero, Milestone Line, featured projects, stats, newsletter CTA |
 | About page | **Structurally real**, narrative/bio content placeholder (needs founding members / exec committee input per Content Outline) |
 | Projects & Initiatives page | **Real** — active initiatives + Strategic Roadmap band, using local content stub. ⚠️ Industrial Cluster and Gas-to-Power cards both have placeholder photos that are **not confirmed to depict the actual Ikeduru sites** — swap before launch (see `lib/content/projects.ts`) |
-| About Ikeduru page | **Structural only** — content intentionally deferred pending named external sourcing (see Content Outline Section 3; Development Roadmap risk notes) |
+| About Ikeduru page | **Partially real** — Autonomous Communities section has real, sourced content (all 29 communities + traditional rulers, provided directly by IEDF). History, Statistics, and LGA Leadership sections still structural-only pending named sourcing (see Content Outline Section 3) |
 | Join Us page | **Real forms**, placeholder body copy |
 | News page | **Structural only** — populates once Sanity `newsPost` documents exist |
 | Contact page | **Real** — full dynamic form, inquiry-type routing, working API route |
