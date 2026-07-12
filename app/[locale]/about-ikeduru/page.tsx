@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { autonomousCommunities } from "@/lib/content/communities";
+import { ikeduruGalleryImages } from "@/lib/content/gallery";
 
 export const metadata: Metadata = {
   title: "About Ikeduru",
@@ -29,6 +31,41 @@ export default function AboutIkeduruPage() {
       <p className="mb-10 text-[15px] text-[var(--color-soil)]">
         The place — distinct from IEDF, the organization.
       </p>
+
+      {/*
+        "Ikeduru in Pictures" — wide gallery strip. Renders real photos
+        from lib/content/gallery.ts once populated; falls back to
+        placeholder tiles so the layout/structure is visible and ready
+        before real images arrive.
+      */}
+      <section className="mb-10">
+        <h2 className="mb-3 text-lg">Ikeduru in Pictures</h2>
+        {ikeduruGalleryImages.length > 0 ? (
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {ikeduruGalleryImages.map((img, i) => (
+              <div key={i} className="relative h-32 overflow-hidden rounded-[7px] border border-black/10">
+                <Image src={img.src} alt={img.alt} fill className="object-cover" />
+                {img.caption && (
+                  <span className="absolute bottom-0 left-0 right-0 bg-black/50 px-2 py-1 text-[10px] text-white">
+                    {img.caption}
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {[1, 2, 3, 4].map((i) => (
+              <div
+                key={i}
+                className="flex h-32 items-center justify-center rounded-[7px] border border-dashed border-black/20 bg-black/[0.02] p-2 text-center text-xs text-[var(--color-soil)]"
+              >
+                Photo pending
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
 
       {placeholderSections.map((section) => (
         <section key={section.id} id={section.id} className="mb-10">
