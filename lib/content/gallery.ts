@@ -16,4 +16,15 @@ export type GalleryImage = {
   caption?: string;
 };
 
-export const ikeduruGalleryImages: GalleryImage[] = [];
+export const ikeduruGalleryImages: GalleryImage[] = [
+  {
+    src: "/images/gallery/ogboachara-monument.jpg",
+    alt: "Ogboachara Bush Burning Masquerade cultural heritage monument, Ground Festival of Iho Dimeze Ancient Kingdom, Ikeduru LGA, Imo State, Nigeria",
+    caption: "Ogboachara Monument, Iho Dimeze Ancient Kingdom",
+  },
+  {
+    src: "/images/gallery/staff-of-office-ceremony.jpg",
+    alt: "Traditional ruler receiving a staff of office",
+    caption: "Staff of office presentation ceremony",
+  },
+];

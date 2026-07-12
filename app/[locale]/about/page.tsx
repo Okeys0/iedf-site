@@ -12,6 +12,7 @@ type Leader = {
   name: string;
   role: string;
   bio?: string;
+  bioSecondParagraph?: string;
   photo?: string;
 };
 
@@ -24,7 +25,9 @@ const leaders: Leader[] = [
     name: "Okeys Ononiwu",
     role: "Secretary",
     photo: "/images/leadership/okeys-ononiwu.jpg",
-    bio: "Okeys Ononiwu serves as Secretary of IEDF. An accomplished technology executive and business transformation leader with extensive international experience, he hails from Amatta, Ikeduru. He is Founder and Chairman of the Okeys Ononiwu Youth Empowerment Foundation (OOYEF), supporting young people through education, scholarships, and mentorship.",
+    bio: "Okeys Ononiwu serves as Secretary of IEDF. An accomplished technology executive and business transformation leader with extensive international experience, he hails from Amatta, Ikeduru.",
+    bioSecondParagraph:
+      "He is Founder and Chairman of the Okeys Ononiwu Youth Empowerment Foundation (OOYEF), supporting young people through education, scholarships, and mentorship.",
   },
   {
     name: "Leadership bio placeholder",
@@ -101,6 +104,11 @@ export default function AboutPage() {
               <div className="text-xs text-[var(--color-soil)]">{leader.role}</div>
               {leader.bio && (
                 <p className="mt-2 text-left text-xs text-[var(--color-soil)]">{leader.bio}</p>
+              )}
+              {leader.bioSecondParagraph && (
+                <p className="mt-2 text-left text-xs text-[var(--color-soil)]">
+                  {leader.bioSecondParagraph}
+                </p>
               )}
             </div>
           ))}
