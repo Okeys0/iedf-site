@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { MilestoneLine } from "@/components/MilestoneLine";
 
 export const metadata: Metadata = {
@@ -7,10 +8,28 @@ export const metadata: Metadata = {
     "The story of IEDF — from a founding meeting in Umuoziri Inyishi to a governed institution driving Ikeduru's economic development.",
 };
 
-const leaders = [
-  { name: "Leadership bio placeholder", role: "Executive role — pending content, see Content Outline Section 2.3" },
-  { name: "Leadership bio placeholder", role: "Executive role — pending content" },
-  { name: "Leadership bio placeholder", role: "Executive role — pending content" },
+type Leader = {
+  name: string;
+  role: string;
+  bio?: string;
+  photo?: string;
+};
+
+const leaders: Leader[] = [
+  {
+    name: "Leadership bio placeholder",
+    role: "Executive role — pending content, see Content Outline Section 2.3",
+  },
+  {
+    name: "Okeys Ononiwu",
+    role: "Secretary",
+    photo: "/images/leadership/okeys-ononiwu.jpg",
+    bio: "Okeys Ononiwu serves as Secretary of IEDF. An accomplished technology executive and business transformation leader with extensive international experience, he hails from Amatta, Ikeduru. He is Founder and Chairman of the Okeys Ononiwu Youth Empowerment Foundation (OOYEF), supporting young people through education, scholarships, and mentorship.",
+  },
+  {
+    name: "Leadership bio placeholder",
+    role: "Executive role — pending content",
+  },
 ];
 
 export default function AboutPage() {
@@ -63,12 +82,26 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
           {leaders.map((leader, i) => (
             <div key={i} className="text-center">
-              <div
-                className="mx-auto mb-3 h-[90px] w-[90px] rounded-full bg-[var(--color-forest-tint)]"
-                aria-hidden="true"
-              />
+              {leader.photo ? (
+                <div className="relative mx-auto mb-3 h-[90px] w-[90px] overflow-hidden rounded-full">
+                  <Image
+                    src={leader.photo}
+                    alt={`${leader.name}, ${leader.role}`}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              ) : (
+                <div
+                  className="mx-auto mb-3 h-[90px] w-[90px] rounded-full bg-[var(--color-forest-tint)]"
+                  aria-hidden="true"
+                />
+              )}
               <div className="text-sm font-semibold">{leader.name}</div>
               <div className="text-xs text-[var(--color-soil)]">{leader.role}</div>
+              {leader.bio && (
+                <p className="mt-2 text-left text-xs text-[var(--color-soil)]">{leader.bio}</p>
+              )}
             </div>
           ))}
         </div>
