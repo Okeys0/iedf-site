@@ -55,14 +55,70 @@ export default function AboutPage() {
       </section>
 
       {/*
-        Full narrative (400–600 words per Content Outline Section 2.1) goes here.
-        Content owner: founding members — this page needs first-person
-        institutional memory, not just facts, so it's intentionally left
-        as a placeholder pending that content.
+        Full founding narrative — provided directly by IEDF (founding
+        members' account), July 2026. Per Content Outline Section 2.1,
+        this is the credibility-anchor content for diaspora visitors.
+        Minor copyedits made for web readability (e.g. "chat a new
+        developmental course" -> "chart", a stray comma spacing fix) —
+        no factual/substantive changes to names, dates, or events.
       */}
-      <section className="mb-14 rounded-[7px] border border-dashed border-black/20 bg-black/[0.02] p-6 text-sm text-[var(--color-soil)]">
-        Full founding narrative pending — content owner: founding members
-        (see Content Outline, Section 2.1).
+      <section className="mb-14 space-y-4 text-[15px] text-[var(--color-soil)]">
+        <p>
+          Despite its proximity to Owerri, the Imo State capital, Ikeduru Local
+          Government Area (LGA) has remained sleepy economically with no meaningful
+          development in the last thirty years. The economic neglect of Ikeduru and
+          lack of local opportunities despite its potential has led to mass urban
+          migration of young people in search of greener pasture. The rising poverty,
+          poor educational amenities, lack of health and security infrastructure
+          among other challenges have remained evident across Ikeduru for decades.
+        </p>
+        <p>
+          IEDF is a non-governmental, non-profit, apolitical community development
+          organisation made up of select Ikeduru sons and daughters who are genuinely
+          committed to the development of the locality through incubation of ideas,
+          collaboration, promotion of innovation and building investment capacity.
+        </p>
+        <p>
+          Realising the dwindling fortunes of Ikeduru LGA, lack of government
+          presence and poor government and private sector infrastructure investment
+          in the locality, men and women of Ikeduru LGA came together to chart a new
+          developmental course for the LGA with emphasis on private sector led
+          investment and advocacy for government attention in areas of need. This
+          led to the formation of IEDF on 4th January 2025. The inaugural meeting was
+          held at Umuoziri Inyishi at the country home of Mr. Decency Nwokedi, and in
+          attendance were the following Ikeduru indigenes: Rt. Hon. Justice Nze
+          (Ikeduru LGA Chairman), Mr. Decency Nwokedi (USA), Mr. Evan Agunanne (USA),
+          Dr. Goddy Ike (USA), Mr. Bede Anunne (USA), and Dr. Pedus Eweama
+          (Australia). It has since then attracted major Ikeduru stakeholders at
+          home and in the diaspora.
+        </p>
+        <p>
+          Ikeduru Economic Development Forum since inception has acted as a think
+          tank and resource entity for investors interested in Ikeduru. It has
+          continued to engage people from Ikeduru resident across the world who are
+          genuinely and apolitically committed to the advancement of important
+          developmental priorities across Ikeduru. It seeks to continue to engage
+          well-meaning Ikeduru sons and daughters to think of and invest in Ikeduru,
+          with the conviction that only Ikeduru people can champion its development.
+          Ultimately, IEDF will continue to collaborate with government and private
+          sector investors in seeking opportunities for investment in various areas
+          of economic endeavour, including agro-allied industries, small scale food
+          processing centres, and investment in health, security, and education.
+        </p>
+        <p>
+          With the support of the current leadership of Ikeduru LGA under the
+          chairmanship of Rt. Hon. Justice Nze, parts of the Atta-Inyishi-Amaimo axis
+          have been designated an industrial cluster for Ikeduru, which will
+          amplify economic activities within this corridor. Courtesy of IEDF, a
+          startup electricity generating company is exploring ways of using gas to
+          generate electricity to feed the emerging businesses within the newly
+          approved industrial cluster and beyond. IEDF aims to collaborate with Imo
+          State government through the Office of the Chief Economic Advisor to
+          advance One Kindred, One Business Initiative (OKOBI), a home grown, Imo
+          State government backed economic model that can drive economic growth
+          through support for small and medium scale group and community owned
+          enterprises.
+        </p>
       </section>
 
       <section className="mb-14 grid grid-cols-1 gap-6 sm:grid-cols-2">
