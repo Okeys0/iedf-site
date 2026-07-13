@@ -19,7 +19,11 @@ type Leader = {
 const leaders: Leader[] = [
   {
     name: "Leadership bio placeholder",
-    role: "Executive role — pending content, see Content Outline Section 2.3",
+    role: "President — pending content, see Content Outline Section 2.3",
+  },
+  {
+    name: "Leadership bio placeholder",
+    role: "Vice President — pending content",
   },
   {
     name: "Okeys Ononiwu",
@@ -28,10 +32,6 @@ const leaders: Leader[] = [
     bio: "Okeys Ononiwu serves as Secretary of IEDF. An accomplished technology executive and business transformation leader with extensive international experience, he hails from Amatta, Ikeduru.",
     bioSecondParagraph:
       "He is Founder and Chairman of the Okeys Ononiwu Youth Empowerment Foundation (OOYEF), supporting young people through education, scholarships, and mentorship.",
-  },
-  {
-    name: "Leadership bio placeholder",
-    role: "Executive role — pending content",
   },
 ];
 
