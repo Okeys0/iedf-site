@@ -75,7 +75,10 @@ export default function AboutPage() {
         <div>
           <h2 className="mb-2 text-lg">Vision</h2>
           <p className="text-sm text-[var(--color-soil)]">
-            Vision statement pending exec committee sign-off (Content Outline, Section 2.2).
+            Ikeduru Economic Development Forum (IEDF) envisions an economically and
+            socially vibrant, prosperous, and self-sustaining Ikeduru, where the
+            collective expertise, resources, and commitment of its people drive
+            transformative and inclusive development.
           </p>
         </div>
       </section>
