@@ -21,6 +21,7 @@ const leaders: Leader[] = [
   {
     name: "Dr. Pedus Eweama",
     role: "President",
+    photo: "/images/leadership/pedus-eweama.jpg",
     bio: "Dr. Pedus Eweama serves as President of IEDF, having been the vision bearer for its formation. A medical practitioner from Umuofor Autonomous Community, Amaimo, he is an award-winning leader in the Nigerian diaspora community, having led various diaspora organisations in Australia.",
     bioSecondParagraph:
       "He is Founder and CEO of G-Prest Imperial Limited, makers of Ginika Feed products in Inyishi, Ikeduru — Imo State's only fully automated fish and poultry feed factory. In 2025, NIDCOM honored him with Nigeria's National Diaspora Merit Award.",
