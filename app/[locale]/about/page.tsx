@@ -38,6 +38,14 @@ const leaders: Leader[] = [
     bioSecondParagraph:
       "He is Founder and Chairman of the Okeys Ononiwu Youth Empowerment Foundation (OOYEF), supporting young people through education, scholarships, and mentorship.",
   },
+  {
+    name: "Evans Agunanne",
+    role: "Treasurer",
+    photo: "/images/leadership/evans-agunanne.jpg",
+    bio: "Evans Agunanne serves as Treasurer of IEDF. A native of Inyishi, Ikeduru, he is a practicing Medical Laboratory Scientist and Director of Evans Biomedics Laboratory Nigeria.",
+    bioSecondParagraph:
+      "He runs Evans Biomedics Learning, an online tutoring platform helping lab scientists prepare for internationally recognized certifications, and uses Ikemba Farms to introduce bioagriculture to youths across Imo State.",
+  },
 ];
 
 export default function AboutPage() {
@@ -104,7 +112,7 @@ export default function AboutPage() {
 
       <section className="mb-14">
         <h2 className="mb-5 text-lg">Leadership &amp; Governance</h2>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {leaders.map((leader, i) => (
             <div key={i} className="text-center">
               {leader.photo ? (
