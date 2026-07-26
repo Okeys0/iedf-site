@@ -15,6 +15,8 @@ export async function Header({ locale }: { locale: string }) {
   ];
 
   const aboutItems = [
+    { href: `/${locale}/about#our-story`, label: "Our Story" },
+    { href: `/${locale}/about#vision-mission`, label: "Vision & Mission" },
     { href: `/${locale}/about/leadership`, label: "Leadership & Governance" },
   ];
 

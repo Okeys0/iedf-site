@@ -74,21 +74,23 @@ export function NavDropdown({ label, href, items }: NavDropdownProps) {
       </button>
 
       {open && (
-        <div
-          role="menu"
-          className="absolute left-0 top-full z-20 mt-2 min-w-[200px] rounded-[7px] border border-black/10 bg-white py-1.5 shadow-lg"
-        >
-          {items.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              role="menuitem"
-              onClick={() => setOpen(false)}
-              className="block px-4 py-2 text-sm text-[var(--color-loam)] hover:bg-[var(--color-forest-tint)] hover:text-[var(--color-forest)]"
-            >
-              {item.label}
-            </Link>
-          ))}
+        <div className="absolute left-0 top-full z-20 pt-2">
+          <div
+            role="menu"
+            className="min-w-[200px] rounded-[7px] border border-black/10 bg-white py-1.5 shadow-lg"
+          >
+            {items.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                role="menuitem"
+                onClick={() => setOpen(false)}
+                className="block px-4 py-2 text-sm text-[var(--color-loam)] hover:bg-[var(--color-forest-tint)] hover:text-[var(--color-forest)]"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
         </div>
       )}
     </div>

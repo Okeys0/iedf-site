@@ -17,7 +17,7 @@ export default async function AboutPage({
   const { locale } = await params;
 
   return (
-    <div className="mx-auto max-w-[880px] px-6 py-14">
+    <div id="our-story" className="mx-auto max-w-[880px] px-6 py-14">
       <h1 className="mb-2 text-3xl">Our Story</h1>
       <p className="mb-10 text-[15px] text-[var(--color-soil)]">
         From a living-room meeting to a governed institution.
@@ -55,7 +55,7 @@ export default async function AboutPage({
         />
       </section>
 
-      <section className="mb-14 grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <section id="vision-mission" className="mb-14 grid grid-cols-1 gap-6 sm:grid-cols-2 scroll-mt-6">
         <div>
           <h2 className="mb-2 text-lg">Mission</h2>
           <p className="text-sm text-[var(--color-soil)]">
