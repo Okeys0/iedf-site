@@ -46,6 +46,26 @@ const leaders: Leader[] = [
     bioSecondParagraph:
       "He runs Evans Biomedics Learning, an online tutoring platform helping lab scientists prepare for internationally recognized certifications, and uses Ikemba Farms to introduce bioagriculture to youths across Imo State.",
   },
+  {
+    name: "Tonie Eweama",
+    role: "Chief Whip",
+    photo: "/images/leadership/tonie-eweama.jpg",
+    bio: "Tonie Eweama serves as Chief Whip of IEDF. He hails from Umuofor Autonomous Community in the Amaimo ancient kingdom, and currently lives and works in Australia, where he manages an export business focused on the automotive industry and accessories.",
+    bioSecondParagraph:
+      "He is also involved in various community development initiatives at home, with special interest in upskilling indigent young people to become self-reliant.",
+  },
+  {
+    name: "Leadership bio placeholder",
+    role: "Executive role — pending content",
+  },
+  {
+    name: "Leadership bio placeholder",
+    role: "Executive role — pending content",
+  },
+  {
+    name: "Leadership bio placeholder",
+    role: "Executive role — pending content",
+  },
 ];
 
 export default function AboutPage() {
