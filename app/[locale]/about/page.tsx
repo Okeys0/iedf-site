@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { MilestoneLine } from "@/components/MilestoneLine";
 import { ExpandableText } from "@/components/ExpandableText";
 
@@ -55,27 +56,38 @@ export default async function AboutPage({
         />
       </section>
 
-      <section id="vision-mission" className="mb-14 grid grid-cols-1 gap-6 sm:grid-cols-2 scroll-mt-6">
-        <div>
-          <h2 className="mb-2 text-lg">Vision</h2>
-          <p className="text-sm text-[var(--color-soil)]">
-            Ikeduru Economic Development Forum (IEDF) envisions an economically and
-            socially vibrant, prosperous, and self-sustaining Ikeduru, where the
-            collective expertise, resources, and commitment of its people drive
-            transformative and inclusive development.
-          </p>
+      <div id="vision-mission" className="mb-14 scroll-mt-6">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div>
+            <h2 className="mb-2 text-lg">Vision</h2>
+            <p className="text-sm text-[var(--color-soil)]">
+              Ikeduru Economic Development Forum (IEDF) envisions an economically and
+              socially vibrant, prosperous, and self-sustaining Ikeduru, where the
+              collective expertise, resources, and commitment of its people drive
+              transformative and inclusive development.
+            </p>
+          </div>
+          <div>
+            <h2 className="mb-2 text-lg">Mission</h2>
+            <p className="text-sm text-[var(--color-soil)]">
+              To mobilize the collective expertise, resources, and partnerships of
+              Ikeduru people and stakeholders to advance sustainable economic growth,
+              attract investment, strengthen communities, and improve the quality of
+              life through innovative, inclusive, and collaborative development
+              initiatives.
+            </p>
+          </div>
         </div>
-        <div>
-          <h2 className="mb-2 text-lg">Mission</h2>
-          <p className="text-sm text-[var(--color-soil)]">
-            To mobilize the collective expertise, resources, and partnerships of
-            Ikeduru people and stakeholders to advance sustainable economic growth,
-            attract investment, strengthen communities, and improve the quality of
-            life through innovative, inclusive, and collaborative development
-            initiatives.
-          </p>
+
+        <div className="relative mx-auto mt-8 aspect-square w-full max-w-[560px]">
+          <Image
+            src="/images/mission-visual.jpg"
+            alt="IEDF Mission infographic illustrating five pillars: Mobilize, Advance, Attract Investment, Strengthen Communities, and Improve Quality of Life, under the theme Collaborate, Innovate, Invest, Prosper"
+            fill
+            className="object-contain"
+          />
         </div>
-      </section>
+      </div>
 
       <section className="mb-14 rounded-[7px] border border-black/10 bg-[var(--color-forest-tint)] p-6 text-center">
         <h2 className="mb-2 text-lg">Leadership &amp; Governance</h2>
