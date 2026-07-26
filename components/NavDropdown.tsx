@@ -10,15 +10,19 @@ type DropdownItem = {
 
 type NavDropdownProps = {
   label: string;
+  /** Where clicking the label itself navigates to */
+  href: string;
   items: DropdownItem[];
 };
 
 /**
- * Click-to-open (and hover-to-open, as a desktop convenience) nav dropdown.
- * Closes on outside click, Escape, or selecting an item — standard menu
- * behavior, keyboard accessible via aria-expanded/aria-haspopup/role=menu.
+ * The label is a real link (clicking "About" navigates to /about, same as
+ * any other nav item). The small arrow next to it is a separate toggle
+ * that reveals the dropdown of sub-pages without navigating — click,
+ * hover (desktop convenience), outside-click, and Escape all work as
+ * expected for the dropdown panel itself.
  */
-export function NavDropdown({ label, items }: NavDropdownProps) {
+export function NavDropdown({ label, href, items }: NavDropdownProps) {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -42,18 +46,22 @@ export function NavDropdown({ label, items }: NavDropdownProps) {
   return (
     <div
       ref={containerRef}
-      className="relative"
+      className="relative flex items-center gap-0.5"
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
+      <Link href={href} className="text-[var(--color-loam)] hover:text-[var(--color-forest)]">
+        {label}
+      </Link>
+
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-haspopup="true"
-        className="flex items-center gap-1 text-[var(--color-loam)] hover:text-[var(--color-forest)]"
+        aria-label={`Show ${label} submenu`}
+        className="p-0.5 text-[var(--color-loam)] hover:text-[var(--color-forest)]"
       >
-        {label}
         <svg
           aria-hidden="true"
           width="10"

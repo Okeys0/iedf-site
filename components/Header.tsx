@@ -15,7 +15,6 @@ export async function Header({ locale }: { locale: string }) {
   ];
 
   const aboutItems = [
-    { href: `/${locale}/about`, label: "Our Story" },
     { href: `/${locale}/about/leadership`, label: "Leadership & Governance" },
   ];
 
@@ -27,7 +26,7 @@ export async function Header({ locale }: { locale: string }) {
         </Link>
 
         <nav className="flex flex-wrap items-center gap-5 text-sm font-semibold" aria-label="Primary">
-          <NavDropdown label={t("about")} items={aboutItems} />
+          <NavDropdown label={t("about")} href={`/${locale}/about`} items={aboutItems} />
           {links.map((link) => (
             <Link
               key={link.href}
