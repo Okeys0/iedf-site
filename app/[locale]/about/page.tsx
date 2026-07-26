@@ -57,6 +57,15 @@ export default async function AboutPage({
 
       <section id="vision-mission" className="mb-14 grid grid-cols-1 gap-6 sm:grid-cols-2 scroll-mt-6">
         <div>
+          <h2 className="mb-2 text-lg">Vision</h2>
+          <p className="text-sm text-[var(--color-soil)]">
+            Ikeduru Economic Development Forum (IEDF) envisions an economically and
+            socially vibrant, prosperous, and self-sustaining Ikeduru, where the
+            collective expertise, resources, and commitment of its people drive
+            transformative and inclusive development.
+          </p>
+        </div>
+        <div>
           <h2 className="mb-2 text-lg">Mission</h2>
           <p className="text-sm text-[var(--color-soil)]">
             To mobilize the collective expertise, resources, and partnerships of
@@ -64,15 +73,6 @@ export default async function AboutPage({
             attract investment, strengthen communities, and improve the quality of
             life through innovative, inclusive, and collaborative development
             initiatives.
-          </p>
-        </div>
-        <div>
-          <h2 className="mb-2 text-lg">Vision</h2>
-          <p className="text-sm text-[var(--color-soil)]">
-            Ikeduru Economic Development Forum (IEDF) envisions an economically and
-            socially vibrant, prosperous, and self-sustaining Ikeduru, where the
-            collective expertise, resources, and commitment of its people drive
-            transformative and inclusive development.
           </p>
         </div>
       </section>
