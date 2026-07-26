@@ -1,17 +1,22 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import { NavDropdown } from "@/components/NavDropdown";
 
 export async function Header({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: "nav" });
 
   const links = [
-    { href: `/${locale}/about`, label: t("about") },
     { href: `/${locale}/about-ikeduru`, label: t("aboutIkeduru") },
     { href: `/${locale}/projects`, label: t("projects") },
     { href: `/${locale}/join-us`, label: t("joinUs") },
     { href: `/${locale}/news`, label: t("news") },
     { href: `/${locale}/contact`, label: t("contact") },
+  ];
+
+  const aboutItems = [
+    { href: `/${locale}/about`, label: "Our Story" },
+    { href: `/${locale}/about/leadership`, label: "Leadership & Governance" },
   ];
 
   return (
@@ -21,7 +26,8 @@ export async function Header({ locale }: { locale: string }) {
           Home
         </Link>
 
-        <nav className="flex flex-wrap gap-5 text-sm font-semibold" aria-label="Primary">
+        <nav className="flex flex-wrap items-center gap-5 text-sm font-semibold" aria-label="Primary">
+          <NavDropdown label={t("about")} items={aboutItems} />
           {links.map((link) => (
             <Link
               key={link.href}

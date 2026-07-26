@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import Link from "next/link";
 import { MilestoneLine } from "@/components/MilestoneLine";
 import { ExpandableText } from "@/components/ExpandableText";
 
@@ -9,66 +9,13 @@ export const metadata: Metadata = {
     "The story of IEDF — from a founding meeting in Umuoziri Inyishi to a governed institution driving Ikeduru's economic development.",
 };
 
-type Leader = {
-  name: string;
-  role: string;
-  bio?: string;
-  bioSecondParagraph?: string;
-  photo?: string;
-};
+export default async function AboutPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
 
-const leaders: Leader[] = [
-  {
-    name: "Dr. Pedus Eweama",
-    role: "President",
-    photo: "/images/leadership/pedus-eweama.jpg",
-    bio: "Dr. Pedus Eweama serves as President of IEDF, having been the vision bearer for its formation. A medical practitioner from Umuofor Autonomous Community, Amaimo, he is an award-winning leader in the Nigerian diaspora community, having led various diaspora organisations in Australia.",
-    bioSecondParagraph:
-      "He is Founder and CEO of G-Prest Imperial Limited, makers of Ginika Feed products in Inyishi, Ikeduru — Imo State's only fully automated fish and poultry feed factory. In 2025, NIDCOM honored him with Nigeria's National Diaspora Merit Award.",
-  },
-  {
-    name: "Leadership bio placeholder",
-    role: "Vice President — pending content",
-  },
-  {
-    name: "Okeys Ononiwu",
-    role: "Secretary",
-    photo: "/images/leadership/okeys-ononiwu.jpg",
-    bio: "Okeys Ononiwu serves as Secretary of IEDF. An accomplished technology executive and business transformation leader with extensive international experience, he hails from Amatta, Ikeduru.",
-    bioSecondParagraph:
-      "He is Founder and Chairman of the Okeys Ononiwu Youth Empowerment Foundation (OOYEF), supporting young people through education, scholarships, and mentorship.",
-  },
-  {
-    name: "Evans Agunanne",
-    role: "Treasurer",
-    photo: "/images/leadership/evans-agunanne.jpg",
-    bio: "Evans Agunanne serves as Treasurer of IEDF. A native of Inyishi, Ikeduru, he is a practicing Medical Laboratory Scientist and Director of Evans Biomedics Laboratory Nigeria.",
-    bioSecondParagraph:
-      "He runs Evans Biomedics Learning, an online tutoring platform helping lab scientists prepare for internationally recognized certifications, and uses Ikemba Farms to introduce bioagriculture to youths across Imo State.",
-  },
-  {
-    name: "Tonie Eweama",
-    role: "Chief Whip",
-    photo: "/images/leadership/tonie-eweama.jpg",
-    bio: "Tonie Eweama serves as Chief Whip of IEDF. He hails from Umuofor Autonomous Community in the Amaimo ancient kingdom, and currently lives and works in Australia, where he manages an export business focused on the automotive industry and accessories.",
-    bioSecondParagraph:
-      "He is also involved in various community development initiatives at home, with special interest in upskilling indigent young people to become self-reliant.",
-  },
-  {
-    name: "Leadership bio placeholder",
-    role: "Executive role — pending content",
-  },
-  {
-    name: "Leadership bio placeholder",
-    role: "Executive role — pending content",
-  },
-  {
-    name: "Leadership bio placeholder",
-    role: "Executive role — pending content",
-  },
-];
-
-export default function AboutPage() {
   return (
     <div className="mx-auto max-w-[880px] px-6 py-14">
       <h1 className="mb-2 text-3xl">Our Story</h1>
@@ -130,39 +77,17 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mb-14">
-        <h2 className="mb-5 text-lg">Leadership &amp; Governance</h2>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {leaders.map((leader, i) => (
-            <div key={i} className="text-center">
-              {leader.photo ? (
-                <div className="relative mx-auto mb-3 h-[90px] w-[90px] overflow-hidden rounded-full">
-                  <Image
-                    src={leader.photo}
-                    alt={`${leader.name}, ${leader.role}`}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              ) : (
-                <div
-                  className="mx-auto mb-3 h-[90px] w-[90px] rounded-full bg-[var(--color-forest-tint)]"
-                  aria-hidden="true"
-                />
-              )}
-              <div className="text-sm font-semibold">{leader.name}</div>
-              <div className="text-xs text-[var(--color-soil)]">{leader.role}</div>
-              {leader.bio && (
-                <p className="mt-2 text-left text-xs text-[var(--color-soil)]">{leader.bio}</p>
-              )}
-              {leader.bioSecondParagraph && (
-                <p className="mt-2 text-left text-xs text-[var(--color-soil)]">
-                  {leader.bioSecondParagraph}
-                </p>
-              )}
-            </div>
-          ))}
-        </div>
+      <section className="mb-14 rounded-[7px] border border-black/10 bg-[var(--color-forest-tint)] p-6 text-center">
+        <h2 className="mb-2 text-lg">Leadership &amp; Governance</h2>
+        <p className="mb-4 text-sm text-[var(--color-soil)]">
+          Meet the executive committee driving IEDF&apos;s mission forward.
+        </p>
+        <Link
+          href={`/${locale}/about/leadership`}
+          className="inline-block rounded-[7px] bg-[var(--color-forest)] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#153d26]"
+        >
+          View Leadership &amp; Governance →
+        </Link>
       </section>
 
       <section>
