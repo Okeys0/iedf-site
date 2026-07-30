@@ -39,9 +39,43 @@ Visit `http://localhost:3000` (redirects to `/en`).
 | Join Us page | **Real forms**, placeholder body copy |
 | News page | **Structural only** — populates once Sanity `newsPost` documents exist |
 | Contact page | **Real** — full dynamic form, inquiry-type routing, working API route |
-| Forms backend | **Validates and logs only** — Postgres + Resend wiring is a clearly marked `TODO` in each route handler (Milestone 4 per roadmap) |
+| Forms backend | **Real** — all three forms (Contact, Member Signup, Newsletter) write to Postgres (Neon) AND send an internal notification email via Resend. Tested end-to-end against a real database; email-sending code is correct per Resend's current SDK but untested against a real Resend account/API key (that requires signing up, which I can't do on your behalf) |
 | Sanity CMS | **Schema only** — not yet connected to a live Sanity project (see below) |
 | Igbo translations | **Machine-assisted draft** — flagged for native-speaker review before launch, see note below |
+
+## Connecting Resend (email notifications)
+
+Without this, forms still work (data saves to Postgres) — you just won't get an email telling you a submission came in.
+
+1. Create a free account at [resend.com](https://resend.com)
+2. Create an API key (Resend dashboard → API Keys)
+3. Set two environment variables in `.env.local` (local dev) and **Vercel → Settings → Environment Variables** (production):
+   ```
+   RESEND_API_KEY=re_your_key_here
+   ADMIN_NOTIFICATION_EMAIL=your-real-email@example.com
+   ```
+4. **Important limitation until you verify a domain:** without verifying `iedf.org.ng` (or another domain) in Resend's dashboard, you can only receive notification emails at the exact email address you used to sign up for Resend — not any arbitrary address. This is a Resend anti-spam restriction, not a bug in this code. To send to other addresses (e.g., a real IEDF group inbox), verify your domain in Resend first (Resend dashboard → Domains → Add Domain, then add the DNS records it gives you — same kind of process as the Vercel domain setup).
+5. Redeploy (or restart `npm run dev`) so the new environment variables take effect
+
+**Design note:** all three forms currently send their notification to one single `ADMIN_NOTIFICATION_EMAIL` address, rather than routing Contact-form inquiries to different departmental addresses (investors@, press@, etc.) as originally sketched in the Technical Architecture doc. Those departmental addresses were placeholders and may not be real, checked mailboxes yet — the email body still tells you which department it *would* route to, so whoever receives it can forward internally. Once real departmental inboxes exist, this is a quick change to make it route to multiple addresses instead of one.
+
+## Connecting Postgres (Neon)
+
+Forms will fail (return a 500 error) until this is set up.
+
+1. Create a free account at [neon.tech](https://neon.tech) — no credit card required
+2. Create a new project (any name/region is fine)
+3. Copy the connection string it gives you (starts with `postgresql://...`)
+4. Set it as `DATABASE_URL` in `.env.local` (local dev) and in **Vercel → Settings → Environment Variables** (production)
+5. Run the schema once — paste the contents of `lib/db/schema.sql` into Neon's SQL Editor (in their dashboard) and run it. This creates the `submissions` table that all three forms write to.
+6. Redeploy (or restart `npm run dev` locally) so the new environment variable takes effect
+
+Once this is done, Contact, Member Signup, and Newsletter form submissions are saved permanently. To view them, use Neon's built-in SQL Editor:
+```sql
+SELECT * FROM submissions ORDER BY created_at DESC;
+```
+
+**Still missing:** email notifications when someone submits (Resend integration — see TODO comments in `app/api/*/route.ts`), and a friendlier internal admin view instead of writing raw SQL. Both are Milestone 4 follow-ups.
 
 ## Connecting Sanity
 

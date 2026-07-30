@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Button } from "@/components/Button";
 import { MilestoneLine } from "@/components/MilestoneLine";
 import { ProjectCard } from "@/components/ProjectCard";
+import { NewsletterForm } from "@/components/NewsletterForm";
 import { activeProjects } from "@/lib/content/projects";
 import logoFull from "@/public/images/logo-full-transparent.png";
 
@@ -118,30 +119,10 @@ export default async function HomePage({
         <div className="mx-auto max-w-[560px] text-center">
           <h2 className="mb-1.5 text-xl">{t("newsletterTitle")}</h2>
           <p className="mb-5 text-sm text-[var(--color-soil)]">{t("newsletterSubtitle")}</p>
-          {/* Client component handles submission — see components/NewsletterForm.tsx */}
-          <form
-            action="/api/newsletter"
-            method="post"
-            className="flex flex-col gap-2 sm:flex-row"
-          >
-            <label htmlFor="newsletter-email" className="sr-only">
-              Email address
-            </label>
-            <input
-              id="newsletter-email"
-              name="email"
-              type="email"
-              required
-              placeholder={t("newsletterPlaceholder")}
-              className="flex-1 rounded-[7px] border border-[var(--color-soil)] bg-white px-3 py-2.5 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-forest)]"
-            />
-            <button
-              type="submit"
-              className="rounded-[7px] bg-[var(--color-forest)] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#153d26]"
-            >
-              {t("newsletterButton")}
-            </button>
-          </form>
+          <NewsletterForm
+            placeholder={t("newsletterPlaceholder")}
+            buttonLabel={t("newsletterButton")}
+          />
         </div>
       </section>
     </>

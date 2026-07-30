@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SubmitForm } from "@/components/SubmitForm";
 
 export const metadata: Metadata = {
   title: "Join Us",
@@ -21,7 +22,11 @@ export default function JoinUsPage() {
           &ldquo;high-calibre diaspora and home membership&rdquo; goal from the Brief —
           confirm before finalizing this form.
         </p>
-        <form action="/api/member-signup" method="post" className="space-y-3">
+        <SubmitForm
+          action="/api/member-signup"
+          submitLabel="Submit"
+          successMessage="Thank you — we've received your interest and will be in touch soon."
+        >
           <div>
             <label htmlFor="member-name" className="mb-1 block text-xs font-semibold">
               Full name
@@ -59,13 +64,7 @@ export default function JoinUsPage() {
               <option value="both">Both</option>
             </select>
           </div>
-          <button
-            type="submit"
-            className="rounded-[7px] bg-[var(--color-forest)] px-5 py-2.5 text-sm font-semibold text-white"
-          >
-            Submit
-          </button>
-        </form>
+        </SubmitForm>
       </section>
 
       <section>
@@ -75,7 +74,12 @@ export default function JoinUsPage() {
           being finalized. Register your interest below and we&apos;ll reach out the
           moment live giving is available.
         </p>
-        <form action="/api/member-signup" method="post" className="space-y-3">
+        <SubmitForm
+          action="/api/member-signup"
+          submitLabel="Register My Interest"
+          successMessage="Thank you — we'll reach out the moment live giving is available."
+          variant="secondary"
+        >
           <input type="hidden" name="interest" value="giving-intent" />
           <div>
             <label htmlFor="support-email" className="mb-1 block text-xs font-semibold">
@@ -89,13 +93,7 @@ export default function JoinUsPage() {
               className="w-full rounded-[6px] border border-[var(--color-soil)] px-3 py-2 text-sm"
             />
           </div>
-          <button
-            type="submit"
-            className="rounded-[7px] border-[1.5px] border-[var(--color-soil)] px-5 py-2.5 text-sm font-semibold"
-          >
-            Register My Interest
-          </button>
-        </form>
+        </SubmitForm>
       </section>
     </div>
   );
