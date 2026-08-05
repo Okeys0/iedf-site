@@ -16,8 +16,12 @@ export const leaders: Leader[] = [
       "He is Founder and CEO of G-Prest Imperial Limited, makers of Ginika Feed products in Inyishi, Ikeduru — Imo State's only fully automated fish and poultry feed factory. In 2025, NIDCOM honored him with Nigeria's National Diaspora Merit Award.",
   },
   {
-    name: "Leadership bio placeholder",
-    role: "Vice President — pending content",
+    name: "High Chief Dozie Ononiwu, FICP",
+    role: "Vice President",
+    photo: "/images/leadership/dozie-ononiwu.jpg",
+    bio: "High Chief Dozie Ononiwu serves as Vice President of IEDF. A native of Amatta, he is an entrepreneur with diverse business interests, as well as a community leader and philanthropist.",
+    bioSecondParagraph:
+      "His commitment to Ikeduru includes a public-private partnership investment in the Brookside Transportation Hub (Ama Nwaozuzu Park) in Iho, and the development of Food Grotto, an oil palm processing facility in his community of Amatta. He is married with children.",
   },
   {
     name: "Okeys Ononiwu",
@@ -44,8 +48,12 @@ export const leaders: Leader[] = [
       "He is also involved in various community development initiatives at home, with special interest in upskilling indigent young people to become self-reliant.",
   },
   {
-    name: "Leadership bio placeholder",
-    role: "Executive role — pending content",
+    name: "Bede Anunne",
+    role: "Financial Secretary",
+    photo: "/images/leadership/bede-anunne.jpg",
+    bio: "Mr. Bede Anunne serves as Financial Secretary of IEDF. A native of Inyishi, he is a highly accomplished professional accountant with extensive local and international affiliations.",
+    bioSecondParagraph:
+      "He is a member of both the Institute of Chartered Accountants of Nigeria and the Nigerian Institute of Taxation.",
   },
   {
     name: "Leadership bio placeholder",
