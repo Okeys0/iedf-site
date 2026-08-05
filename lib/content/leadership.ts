@@ -56,11 +56,19 @@ export const leaders: Leader[] = [
       "He is a member of both the Institute of Chartered Accountants of Nigeria and the Nigerian Institute of Taxation.",
   },
   {
-    name: "Leadership bio placeholder",
-    role: "Executive role — pending content",
+    name: "Joe Erakaha",
+    role: "Assistant Secretary",
+    photo: "/images/leadership/joe-erakaha.jpg",
+    bio: "Joe Erakaha serves as Assistant Secretary of IEDF. A native of Amaku Akabo, Ikeduru LGA, he is a Health Practitioner resident in Australia.",
+    bioSecondParagraph:
+      "He is active in community leadership, including the Nigerian Association of WA Inc. and the Council of Nigeria Association Presidents in Australia Inc., with key interests in health enlightenment and leadership awareness.",
   },
   {
-    name: "Leadership bio placeholder",
-    role: "Executive role — pending content",
+    name: "Hon. Dr. Lady Clara Nwakaego Njoku, JP",
+    role: "Public Relations Officer",
+    photo: "/images/leadership/clara-njoku.jpg",
+    bio: "Hon. Dr. Lady Clara Nwakaego Njoku serves as Public Relations Officer of IEDF and is the Honorable Commissioner, Imo State House of Assembly Service Commission. A native of Ikeduru LGA, she holds a PhD in Conflict Resolution and an MSc in International Relations from Imo State University.",
+    bioSecondParagraph:
+      "She is Founder of Rejoice International Foundation, an NGO supporting women, widows, and persons with disabilities across all 27 LGAs of Imo State, and has served in several public and community leadership roles, including Transition Chairman of Ikeduru LGA and President of Women, Anglican Communion Ikeduru. She holds the chieftaincy titles Igolo of Ogbor and Nwanyi Puruichie of Umunkwo.",
   },
 ];
