@@ -71,4 +71,12 @@ export const leaders: Leader[] = [
     bioSecondParagraph:
       "She is Founder of Rejoice International Foundation, an NGO supporting women, widows, and persons with disabilities across all 27 LGAs of Imo State, and has served in several public and community leadership roles, including Transition Chairman of Ikeduru LGA and President of Women, Anglican Communion Ikeduru. She holds the chieftaincy titles Igolo of Ogbor and Nwanyi Puruichie of Umunkwo.",
   },
+  {
+    name: "Chigozie George Iwuoha, Esq.",
+    role: "Legal Adviser",
+    photo: "/images/leadership/chigozie-iwuoha.jpg",
+    bio: "Chigozie George Iwuoha, Esq. serves as Legal Adviser to IEDF. A Legal Practitioner from Amaimo, Ikeduru, he currently serves as Head of Legal Services at the National Salaries, Incomes and Wages Commission.",
+    bioSecondParagraph:
+      "He is a community leader actively involved in grassroots development initiatives in Ikeduru.",
+  },
 ];
