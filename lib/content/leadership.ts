@@ -19,7 +19,7 @@ export const leaders: Leader[] = [
     name: "High Chief Dozie Ononiwu, FICP",
     role: "Vice President",
     photo: "/images/leadership/dozie-ononiwu.jpg",
-    bio: "High Chief Dozie Ononiwu serves as Vice President of IEDF. A native of Amatta, he is an entrepreneur with diverse business interests, as well as a community leader and philanthropist.",
+    bio: "High Chief Dozie Ononiwu, FICP, serves as Vice President of IEDF. FICP denotes Certified Fellow of the Institute of Cooperative Professionals of Nigeria (ICOPRON). A native of Amatta, he is an entrepreneur with diverse business interests, as well as a community leader and philanthropist.",
     bioSecondParagraph:
       "His commitment to Ikeduru includes a public-private partnership investment in the Brookside Transportation Hub (Ama Nwaozuzu Park) in Iho, and the development of Food Grotto, an oil palm processing facility in his community of Amatta. He is married with children.",
   },
