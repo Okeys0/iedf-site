@@ -16,6 +16,8 @@ const labels: Record<(typeof inquiryTypes)[number], string> = {
 // while capturing what's needed for high-value ones.
 const showOrganizationFor = new Set(["investor", "partner", "press"]);
 
+type FieldErrors = Record<string, string[] | undefined>;
+
 export function ContactForm() {
   const [inquiryType, setInquiryType] = useState<(typeof inquiryTypes)[number]>(
     "investor"
@@ -23,18 +25,47 @@ export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">(
     "idle"
   );
+  // Field-specific validation errors (e.g. "Please provide a bit more
+  // detail") — distinct from a generic server/network failure, so the
+  // person submitting knows exactly what to fix rather than seeing a
+  // vague "something went wrong" for what might just be a short message.
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const [genericError, setGenericError] = useState<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("submitting");
+    setFieldErrors({});
+    setGenericError(null);
 
     const formData = new FormData(e.currentTarget);
 
     try {
       const res = await fetch("/api/contact", { method: "POST", body: formData });
-      setStatus(res.ok ? "success" : "error");
+      const body = await res.json().catch(() => null);
+
+      if (res.ok) {
+        setStatus("success");
+        return;
+      }
+
+      setStatus("error");
+      const errors: FieldErrors = body?.errors ?? {};
+      // `_form` is a general (non-field-specific) error from the server,
+      // e.g. a database failure — distinct from per-field validation
+      // errors like a too-short message.
+      if (errors._form) {
+        setGenericError(errors._form[0]);
+      } else if (Object.keys(errors).length > 0) {
+        setFieldErrors(errors);
+      } else {
+        setGenericError("Something went wrong — please try again, or email us directly.");
+      }
     } catch {
       setStatus("error");
+      setGenericError(
+        "Something went wrong — please check your connection and try again, or email us directly."
+      );
     }
   }
 
@@ -47,7 +78,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4" noValidate>
       <fieldset>
         <legend className="mb-2 text-xs font-semibold uppercase tracking-wide text-[var(--color-soil)]">
           Inquiry Type
@@ -87,6 +118,9 @@ export function ContactForm() {
           required
           className="w-full rounded-[6px] border border-[var(--color-soil)] px-3 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-forest)]"
         />
+        {fieldErrors.name && (
+          <p className="mt-1 text-xs text-red-700">{fieldErrors.name[0]}</p>
+        )}
       </div>
 
       <div>
@@ -100,6 +134,9 @@ export function ContactForm() {
           required
           className="w-full rounded-[6px] border border-[var(--color-soil)] px-3 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-forest)]"
         />
+        {fieldErrors.email && (
+          <p className="mt-1 text-xs text-red-700">{fieldErrors.email[0]}</p>
+        )}
       </div>
 
       {showOrganizationFor.has(inquiryType) && (
@@ -126,6 +163,9 @@ export function ContactForm() {
           rows={5}
           className="w-full rounded-[6px] border border-[var(--color-soil)] px-3 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-forest)]"
         />
+        {fieldErrors.message && (
+          <p className="mt-1 text-xs text-red-700">{fieldErrors.message[0]}</p>
+        )}
       </div>
 
       <button
@@ -136,11 +176,7 @@ export function ContactForm() {
         {status === "submitting" ? "Sending…" : "Send Message"}
       </button>
 
-      {status === "error" && (
-        <p className="text-sm text-red-700">
-          Something went wrong — please try again, or email us directly.
-        </p>
-      )}
+      {genericError && <p className="text-sm text-red-700">{genericError}</p>}
     </form>
   );
 }
