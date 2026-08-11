@@ -56,10 +56,10 @@ export const leaders: Leader[] = [
       "He is a member of both the Institute of Chartered Accountants of Nigeria and the Nigerian Institute of Taxation.",
   },
   {
-    name: "Joe Erakaha",
+    name: "Joe Erekaha",
     role: "Assistant Secretary",
-    photo: "/images/leadership/joe-erakaha.jpg",
-    bio: "Joe Erakaha serves as Assistant Secretary of IEDF. A native of Amaku Akabo, Ikeduru LGA, he is a Health Practitioner resident in Australia.",
+    photo: "/images/leadership/joe-erekaha.jpg",
+    bio: "Joe Erekaha serves as Assistant Secretary of IEDF. A native of Amaku Akabo, Ikeduru LGA, he is a Health Practitioner resident in Australia.",
     bioSecondParagraph:
       "He is active in community leadership, including the Nigerian Association of WA Inc. and the Council of Nigeria Association Presidents in Australia Inc., with key interests in health enlightenment and leadership awareness.",
   },
