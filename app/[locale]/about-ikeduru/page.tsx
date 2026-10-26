@@ -80,7 +80,7 @@ export default function AboutIkeduruPage() {
       <section id="communities" className="mb-10">
         <h2 className="mb-1 text-lg">Autonomous Communities</h2>
         <p className="mb-5 text-xs text-[var(--color-soil)]">
-          Source: provided directly by IEDF · Last updated July 2026
+          Source: provided directly by IEDF · Last updated 26 October 2026
         </p>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {autonomousCommunities.map((c) => (
