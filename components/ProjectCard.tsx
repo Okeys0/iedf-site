@@ -1,5 +1,10 @@
+"use client";
+
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import { Tag } from "./Tag";
+import { SpotlightCard } from "./SpotlightCard";
+import { clamp } from "@/lib/clamp";
 
 export type Project = {
   slug: string;
@@ -7,52 +12,73 @@ export type Project = {
   summary: string;
   status: "active" | "planned";
   /**
-   * Optional real photo. If omitted, falls back to the tint-colored
-   * placeholder — see Content Outline note on sourcing real photography
-   * before labeling images as depicting a specific, named project.
+   * Optional real photo. If omitted, falls back to an emerald tint slot
+   * with a wait motif.
    */
   image?: {
     src: string;
     alt: string;
-    /**
-     * "cover" (default) fills the slot, cropping edges as needed —
-     * good for photographic content. "contain" shows the whole image
-     * with no cropping — use for logos/lockups where every part
-     * (e.g. a tagline strip) must always stay visible.
-     */
     fit?: "cover" | "contain";
   };
 };
 
+/**
+ * Premium glass project card: spotlight cursor glow, cinematic image
+ * zoom, gold rim on hover, and an arrow affordance that slides in.
+ */
 export function ProjectCard({ project }: { project: Project }) {
+  function handleMove(e: React.MouseEvent<HTMLDivElement>) {
+    const el = e.currentTarget;
+    const rect = el.getBoundingClientRect();
+    const x = clamp((e.clientX - rect.left) / rect.width, 0, 1);
+    const y = clamp((e.clientY - rect.top) / rect.height, 0, 1);
+    el.style.setProperty("--spot-x", `${x * 100}%`);
+    el.style.setProperty("--spot-y", `${y * 100}%`);
+  }
+
   return (
-    <div className="overflow-hidden rounded-[7px] border border-black/10 bg-white">
-      {project.image ? (
-        <div
-          className="relative h-[100px] w-full"
-          style={project.image.fit === "contain" ? { background: "rgb(5, 10, 48)" } : undefined}
-        >
-          <Image
-            src={project.image.src}
-            alt={project.image.alt}
-            fill
-            className={project.image.fit === "contain" ? "object-contain" : "object-cover"}
+    <SpotlightCard className="glass-hover group rounded-3xl" glow>
+      <div onMouseMove={handleMove} className="relative flex h-full flex-col">
+        <div className="relative h-44 w-full overflow-hidden rounded-t-3xl">
+          {project.image ? (
+            <Image
+              src={project.image.src}
+              alt={project.image.alt}
+              fill
+              className={`transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.07] ${
+                project.image.fit === "contain" ? "object-contain p-6" : "object-cover"
+              }`}
+            />
+          ) : (
+            <div
+              aria-hidden="true"
+              className="flex h-full items-center justify-center"
+              style={{ background: "linear-gradient(140deg, rgba(47,158,99,0.15), rgba(26,74,46,0.1))" }}
+            />
+          )}
+          {/* Cinematic gradient fade into the card body */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0a1712] via-[#0a1712]/60 to-transparent"
           />
+          <div className="absolute left-4 top-4">
+            <Tag variant={project.status}>
+              {project.status === "active" ? "Active" : "Planned"}
+            </Tag>
+          </div>
         </div>
-      ) : (
-        <div className="h-[100px] bg-[var(--color-forest-tint)]" aria-hidden="true" />
-      )}
-      <div className="p-4">
-        <div className="mb-2">
-          <Tag variant={project.status}>
-            {project.status === "active" ? "Active" : "Planned"}
-          </Tag>
+
+        <div className="relative z-[1] flex flex-1 flex-col p-6 pt-1">
+          <h3 className="mb-2 font-display text-[22px] leading-snug text-ink transition-colors duration-300 group-hover:text-gold-pale">
+            {project.title}
+          </h3>
+          <p className="mb-5 flex-1 text-[13.5px] leading-relaxed text-ink-muted">{project.summary}</p>
+          <div className="flex items-center gap-2 font-data text-[11px] font-semibold uppercase tracking-[0.2em] text-gold-bright opacity-0 transition-all duration-500 group-hover:opacity-100">
+            Explore
+            <ArrowRight size={13} className="transition-transform duration-500 group-hover:translate-x-1.5" />
+          </div>
         </div>
-        <h3 className="mb-1.5 font-sans text-[15px] font-semibold text-[var(--color-loam)]">
-          {project.title}
-        </h3>
-        <p className="text-[13px] text-[var(--color-soil)]">{project.summary}</p>
       </div>
-    </div>
+    </SpotlightCard>
   );
 }

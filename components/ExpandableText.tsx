@@ -15,7 +15,7 @@ export function ExpandableText({ paragraphs, initiallyShown = 2 }: ExpandableTex
   const hasMore = paragraphs.length > initiallyShown;
 
   return (
-    <div className="space-y-4 text-[15px] text-[var(--color-soil)]">
+    <div className="space-y-5 text-[15.5px] leading-[1.85] text-ink-muted">
       {visible.map((p, i) => (
         <p key={i}>{p}</p>
       ))}
@@ -25,8 +25,9 @@ export function ExpandableText({ paragraphs, initiallyShown = 2 }: ExpandableTex
           type="button"
           onClick={() => setExpanded((v) => !v)}
           aria-expanded={expanded}
-          className="text-sm font-semibold text-[var(--color-forest)] underline underline-offset-2 hover:no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-forest)]"
+          className="group inline-flex items-center gap-2 font-data text-xs font-semibold uppercase tracking-[0.2em] text-gold-bright transition-colors hover:text-gold-pale focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-bright"
         >
+          <span className="hairline-gold h-px w-6 transition-all duration-300 group-hover:w-9" />
           {expanded ? "Show less" : "Read more"}
         </button>
       )}

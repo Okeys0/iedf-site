@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import { CheckCircle2 } from "lucide-react";
 
 type SubmitFormProps = {
   action: string;
@@ -43,7 +44,8 @@ export function SubmitForm({
 
   if (status === "success") {
     return (
-      <div className="rounded-[7px] border border-[var(--color-forest)] bg-[var(--color-forest-tint)] p-4 text-sm">
+      <div className="glass flex items-start gap-2.5 rounded-2xl border-mint/25 p-5 text-sm leading-relaxed text-mint">
+        <CheckCircle2 size={18} className="mt-0.5 shrink-0" />
         {successMessage}
       </div>
     );
@@ -51,17 +53,17 @@ export function SubmitForm({
 
   const buttonClass =
     variant === "primary"
-      ? "rounded-[7px] bg-[var(--color-forest)] px-5 py-2.5 text-sm font-semibold text-white disabled:opacity-60"
-      : "rounded-[7px] border-[1.5px] border-[var(--color-soil)] px-5 py-2.5 text-sm font-semibold disabled:opacity-60";
+      ? "inline-flex items-center justify-center rounded-full bg-[linear-gradient(115deg,#f6e7b2,#e8c76a_30%,#c9982f_100%)] px-6 py-3 text-sm font-bold text-night glow-gold transition-all duration-300 hover:brightness-110 disabled:opacity-60"
+      : "inline-flex items-center justify-center rounded-full border border-gold/30 bg-gold/[0.06] px-6 py-3 text-sm font-semibold text-gold-pale transition-all duration-300 hover:bg-gold/[0.12] disabled:opacity-60";
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3">
+    <form onSubmit={handleSubmit} className="space-y-3.5">
       {children}
       <button type="submit" disabled={status === "submitting"} className={buttonClass}>
         {status === "submitting" ? "Sending…" : submitLabel}
       </button>
       {status === "error" && (
-        <p className="text-sm text-red-700">
+        <p className="text-sm text-red-400">
           Something went wrong — please try again, or email us directly.
         </p>
       )}
