@@ -29,7 +29,7 @@ export function Marquee() {
   return (
     <div
       aria-hidden="true"
-      className="relative overflow-hidden border-y border-white/5 bg-white/[0.015] py-5 backdrop-blur-sm"
+      className="relative overflow-hidden border-y border-gold/15 bg-forest/20 py-5 backdrop-blur-sm"
     >
       <div className="flex w-max" style={{ animation: "marquee 38s linear infinite" }}>
         <Track items={items} />

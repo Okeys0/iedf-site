@@ -26,10 +26,10 @@ export function Button({
 
   const styles =
     variant === "primary"
-      ? "text-night font-bold bg-[linear-gradient(115deg,#f6e7b2,#e8c76a_30%,#c9982f_100%)] glow-gold hover:brightness-110 active:scale-[0.98]"
+      ? "text-night font-bold bg-[linear-gradient(115deg,#f6e7b2,#ecc76a_30%,#d4a734_100%)] glow-gold hover:brightness-110 active:scale-[0.98]"
       : variant === "secondary"
-        ? "glass text-ink hover:text-gold-pale hover:border-gold/40"
-        : "text-ink-muted hover:text-gold-pale border border-transparent hover:border-white/10";
+        ? "glass text-ink hover:text-gold-pale hover:border-gold/50"
+        : "text-ink-muted hover:text-gold-pale border border-transparent hover:border-gold/25";
 
   return (
     <Link href={href} className={`${base} ${styles} ${className}`.trim()}>

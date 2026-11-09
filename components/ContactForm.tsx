@@ -27,7 +27,7 @@ type FieldErrors = Record<string, string[] | undefined>;
 
 /** Shared glass styling for premium inputs */
 export const inputCls =
-  "w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-ink placeholder:text-ink-faint transition-all duration-300 focus:border-gold/50 focus:bg-white/[0.06] focus:outline-none focus:ring-2 focus:ring-gold/25";
+  "w-full rounded-xl border border-gold/15 bg-forest/20 px-4 py-3 text-sm text-ink placeholder:text-ink-faint transition-all duration-300 focus:border-gold/50 focus:bg-forest/35 focus:outline-none focus:ring-2 focus:ring-gold/25";
 const labelCls = "mb-1.5 block font-data text-[10px] font-semibold uppercase tracking-[0.2em] text-ink-muted";
 
 export function ContactForm() {

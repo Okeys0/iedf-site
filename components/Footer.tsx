@@ -26,7 +26,7 @@ export async function Footer({ locale }: { locale: string }) {
       <div
         aria-hidden="true"
         className="absolute -bottom-40 left-1/2 h-96 w-[60rem] -translate-x-1/2 rounded-full opacity-25 blur-[100px]"
-        style={{ background: "radial-gradient(circle, rgba(201,152,47,0.25), transparent 65%)" }}
+        style={{ background: "radial-gradient(circle, rgba(212,167,52,0.4), transparent 65%)" }}
       />
 
       <div className="relative mx-auto max-w-6xl px-6 pb-10 pt-16">
@@ -38,7 +38,7 @@ export async function Footer({ locale }: { locale: string }) {
                 <span
                   aria-hidden="true"
                   className="absolute inset-[-10px] rounded-full opacity-60 blur-xl transition-opacity duration-500 group-hover:opacity-90"
-                  style={{ background: "radial-gradient(circle, rgba(201,152,47,0.35), transparent 70%)" }}
+                  style={{ background: "radial-gradient(circle, rgba(212,167,52,0.5), transparent 70%)" }}
                 />
                 <span className="glass-strong relative flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-2xl sm:h-[5.25rem] sm:w-[5.25rem]">
                   <Image
@@ -117,7 +117,7 @@ export async function Footer({ locale }: { locale: string }) {
         </div>
 
         {/* Legal strip */}
-        <div className="flex flex-col items-start justify-between gap-3 border-t border-white/[0.07] pt-6 text-[12px] text-ink-faint sm:flex-row sm:items-center">
+        <div className="flex flex-col items-start justify-between gap-3 border-t border-gold/15 pt-6 text-[12px] text-ink-faint sm:flex-row sm:items-center">
           <p className="max-w-[70ch]">
             {t("apolitical")}
           </p>

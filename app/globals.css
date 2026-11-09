@@ -2,47 +2,46 @@
 
 /*
   IEDF — Emerald Luxe Design System
-  A premium, cinematic, glassmorphic dark theme.
-  Brand DNA preserved: forest green + gold (IEDF logo), now deepened into
-  an emerald-dusk canvas with aurora glows, frosted glass surfaces and
-  shimmering gold accents.
+  Premium cinematic glass theme rooted in brand DNA:
+  forest green + gold (from the IEDF logo / OG mark). Canvas stays dark,
+  but reads as green — never flat black — with gold accents throughout.
 */
 
 :root {
-  /* ── Canvas: deep emerald dusk ─────────────────────────── */
-  --color-night: #050b08;
-  --color-night-soft: #071110;
-  --color-panel: #0a1712;
-  --color-panel-2: #0d1c16;
+  /* ── Canvas: living forest green (not black) ───────────── */
+  --color-night: #0c1f16;
+  --color-night-soft: #12301f;
+  --color-panel: #163825;
+  --color-panel-2: #1b422c;
 
-  /* ── Brand, deepened ───────────────────────────────────── */
-  --color-forest: #1a4a2e;
-  --color-forest-deep: #0f2d1d;
+  /* ── Brand ─────────────────────────────────────────────── */
+  --color-forest: #1f5a38;
+  --color-forest-deep: #134028;
   --color-palm: #5a9e47;
   --color-emerald: #2f9e63;
   --color-mint: #8fe6b8;
-  --color-gold: #c9982f;
-  --color-gold-bright: #e8c76a;
-  --color-gold-pale: #f4e3ae;
-  --color-gold-deep: #a97e1f;
+  --color-gold: #d4a734;
+  --color-gold-bright: #ecc76a;
+  --color-gold-pale: #f6e7b2;
+  --color-gold-deep: #b3861c;
   --color-gold-text: #8a6a1f; /* accessible variant for light contexts */
   --color-river: #3e7db8;
   --color-soil: #6b4226;
 
   /* ── Ink on dark ───────────────────────────────────────── */
-  --color-ink: #e9ede8;
-  --color-ink-muted: #a3b1a8;
-  --color-ink-faint: #6d7d74;
+  --color-ink: #f0f5ef;
+  --color-ink-muted: #b4c4b8;
+  --color-ink-faint: #7a8f80;
 
   /* ── Structural ────────────────────────────────────────── */
-  --color-glass-line: rgba(255, 255, 255, 0.09);
-  --color-glass-line-strong: rgba(255, 255, 255, 0.16);
+  --color-glass-line: rgba(232, 199, 106, 0.14);
+  --color-glass-line-strong: rgba(232, 199, 106, 0.28);
 
   --radius-base: 12px;
 
   /* ── Gradients ─────────────────────────────────────────── */
-  --grad-gold: linear-gradient(115deg, #f6e7b2 0%, #e8c76a 28%, #c9982f 55%, #a97e1f 100%);
-  --grad-emerald: linear-gradient(135deg, #2f9e63 0%, #1a4a2e 60%, #0f2d1d 100%);
+  --grad-gold: linear-gradient(115deg, #f6e7b2 0%, #e8c76a 28%, #d4a734 55%, #b3861c 100%);
+  --grad-emerald: linear-gradient(135deg, #2f9e63 0%, #1f5a38 55%, #0c1f16 100%);
 }
 
 @theme inline {
@@ -131,12 +130,12 @@ html {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #050b08;
+  background: var(--color-night);
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, rgba(201, 152, 47, 0.55), rgba(26, 74, 46, 0.8));
+  background: linear-gradient(180deg, rgba(212, 167, 52, 0.65), rgba(31, 90, 56, 0.9));
   border-radius: 8px;
-  border: 2px solid #050b08;
+  border: 2px solid var(--color-night);
 }
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, rgba(232, 199, 106, 0.8), rgba(47, 158, 99, 0.9));
@@ -161,23 +160,33 @@ html {
 /* ═════════════════════ Glass system ═════════════════════ */
 
 .glass {
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018));
-  -webkit-backdrop-filter: blur(18px) saturate(150%);
-  backdrop-filter: blur(18px) saturate(150%);
+  background: linear-gradient(
+    160deg,
+    rgba(47, 158, 99, 0.16),
+    rgba(12, 31, 22, 0.55) 55%,
+    rgba(212, 167, 52, 0.05)
+  );
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
   border: 1px solid var(--color-glass-line);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 12px 40px -12px rgba(0, 0, 0, 0.6);
+    inset 0 1px 0 rgba(246, 231, 178, 0.1),
+    0 12px 40px -12px rgba(8, 28, 18, 0.65);
 }
 
 .glass-strong {
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
-  backdrop-filter: blur(24px) saturate(160%);
+  background: linear-gradient(
+    160deg,
+    rgba(47, 158, 99, 0.22),
+    rgba(18, 48, 31, 0.72) 50%,
+    rgba(212, 167, 52, 0.08)
+  );
+  -webkit-backdrop-filter: blur(24px) saturate(170%);
+  backdrop-filter: blur(24px) saturate(170%);
   border: 1px solid var(--color-glass-line-strong);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    0 20px 60px -20px rgba(0, 0, 0, 0.7);
+    inset 0 1px 0 rgba(246, 231, 178, 0.14),
+    0 20px 60px -20px rgba(8, 28, 18, 0.7);
 }
 
 .glass-hover {
@@ -187,11 +196,11 @@ html {
     box-shadow 0.45s ease;
 }
 .glass-hover:hover {
-  border-color: rgba(232, 199, 106, 0.35);
+  border-color: rgba(236, 199, 106, 0.5);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    0 20px 60px -18px rgba(0, 0, 0, 0.75),
-    0 0 60px -18px rgba(201, 152, 47, 0.4);
+    inset 0 1px 0 rgba(246, 231, 178, 0.16),
+    0 20px 60px -18px rgba(8, 28, 18, 0.75),
+    0 0 60px -14px rgba(212, 167, 52, 0.5);
   transform: translateY(-4px);
 }
 
@@ -260,8 +269,8 @@ html {
   pointer-events: none;
   background: radial-gradient(
     520px circle at var(--spot-x, 50%) var(--spot-y, 50%),
-    rgba(201, 152, 47, 0.14),
-    rgba(47, 158, 99, 0.07) 40%,
+    rgba(212, 167, 52, 0.22),
+    rgba(47, 158, 99, 0.14) 40%,
     transparent 65%
   );
   opacity: 0;

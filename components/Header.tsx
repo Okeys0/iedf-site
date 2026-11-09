@@ -68,8 +68,8 @@ export function Header() {
         <div
           className={`flex w-full max-w-6xl items-center justify-between gap-4 rounded-2xl px-4 py-2.5 transition-all duration-500 sm:px-5 ${
             scrolled
-              ? "glass-strong shadow-[0_16px_50px_-12px_rgba(0,0,0,0.8)]"
-              : "border border-white/[0.06] bg-white/[0.03] backdrop-blur-md"
+              ? "glass-strong shadow-[0_16px_50px_-12px_rgba(8,28,18,0.75)]"
+              : "border border-gold/15 bg-forest/25 backdrop-blur-md"
           }`}
         >
           {/* Brand */}
@@ -101,7 +101,7 @@ export function Header() {
           {/* Right cluster */}
           <div className="flex items-center gap-2.5">
             <div
-              className="hidden items-center rounded-full border border-white/10 bg-black/20 p-0.5 sm:flex"
+              className="hidden items-center rounded-full border border-gold/20 bg-forest-deep/50 p-0.5 sm:flex"
               aria-label="Language switcher"
             >
               {routing.locales.map((loc) => (
@@ -149,7 +149,7 @@ export function Header() {
             animate={{ opacity: 1 }}
             exit={reduced ? { opacity: 0 } : { opacity: 0 }}
             transition={{ duration: 0.35 }}
-            className="fixed inset-0 z-[100] flex flex-col bg-night/90 backdrop-blur-2xl lg:hidden"
+            className="fixed inset-0 z-[100] flex flex-col bg-forest-deep/95 backdrop-blur-2xl lg:hidden"
             role="dialog"
             aria-modal="true"
           >
