@@ -1,15 +1,21 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { inquiryTypes } from "@/lib/validations/forms";
 import { CheckCircle2 } from "lucide-react";
 
-const labels: Record<(typeof inquiryTypes)[number], string> = {
-  investor: "Investor",
-  partner: "Partner",
-  press: "Press",
-  volunteer: "Volunteer",
-  general: "General",
+/**
+ * Inquiry-type radio labels, keyed by the inbound InquiryType union found
+ * in lib/validations/forms.ts (order preserved there) → message keys in
+ * contact.form (typeInvestor … typeGeneral) so labels localize.
+ */
+const typeLabels: Record<(typeof inquiryTypes)[number], string> = {
+  investor: "typeInvestor",
+  partner: "typePartner",
+  press: "typePress",
+  volunteer: "typeVolunteer",
+  general: "typeGeneral",
 };
 
 // Organization field shown only for higher-context inquiry types, per
@@ -25,12 +31,16 @@ export const inputCls =
 const labelCls = "mb-1.5 block font-data text-[10px] font-semibold uppercase tracking-[0.2em] text-ink-muted";
 
 export function ContactForm() {
+  const t = useTranslations("contact.form");
   const [inquiryType, setInquiryType] = useState<(typeof inquiryTypes)[number]>(
     "investor"
   );
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">(
     "idle"
   );
+  // Which fields (if any) the server flagged — presence only: the shown
+  // error text is translated here so it matches the UI locale, not the
+  // server's English Zod strings.
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [genericError, setGenericError] = useState<string | null>(null);
 
@@ -54,17 +64,15 @@ export function ContactForm() {
       setStatus("error");
       const errors: FieldErrors = body?.errors ?? {};
       if (errors._form) {
-        setGenericError(errors._form[0]);
+        setGenericError(t("errServer"));
       } else if (Object.keys(errors).length > 0) {
         setFieldErrors(errors);
       } else {
-        setGenericError("Something went wrong — please try again, or email us directly.");
+        setGenericError(t("errServer"));
       }
     } catch {
       setStatus("error");
-      setGenericError(
-        "Something went wrong — please check your connection and try again, or email us directly."
-      );
+      setGenericError(t("errGeneric"));
     }
   }
 
@@ -73,8 +81,8 @@ export function ContactForm() {
       <div className="glass flex items-start gap-3 rounded-2xl border-mint/25 p-6 text-sm leading-relaxed text-mint">
         <CheckCircle2 size={20} className="mt-0.5 shrink-0" />
         <div>
-          <p className="mb-1 font-semibold text-ink">Message received.</p>
-          Thank you — your message has been sent. We&apos;ll be in touch shortly.
+          <p className="mb-1 font-semibold text-ink">{t("successTitle")}</p>
+          {t("successText")}
         </div>
       </div>
     );
@@ -83,7 +91,7 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-5" noValidate>
       <fieldset>
-        <legend className={`${labelCls} mb-3`}>Inquiry Type</legend>
+        <legend className={`${labelCls} mb-3`}>{t("legend")}</legend>
         <div className="flex flex-wrap gap-2">
           {inquiryTypes.map((type) => (
             <label key={type}>
@@ -102,7 +110,7 @@ export function ContactForm() {
                     : "border-white/10 bg-white/[0.03] text-ink-muted hover:border-white/25 hover:text-ink"
                 }`}
               >
-                {labels[type]}
+                {t(typeLabels[type])}
               </span>
             </label>
           ))}
@@ -111,28 +119,28 @@ export function ContactForm() {
 
       <div>
         <label htmlFor="name" className={labelCls}>
-          Full name
+          {t("nameLabel")}
         </label>
         <input id="name" name="name" required className={inputCls} />
         {fieldErrors.name && (
-          <p className="mt-1.5 text-xs text-red-400">{fieldErrors.name[0]}</p>
+          <p className="mt-1.5 text-xs text-red-400">{t("errName")}</p>
         )}
       </div>
 
       <div>
         <label htmlFor="email" className={labelCls}>
-          Email
+          {t("emailLabel")}
         </label>
         <input id="email" name="email" type="email" required className={inputCls} />
         {fieldErrors.email && (
-          <p className="mt-1.5 text-xs text-red-400">{fieldErrors.email[0]}</p>
+          <p className="mt-1.5 text-xs text-red-400">{t("errEmail")}</p>
         )}
       </div>
 
       {showOrganizationFor.has(inquiryType) && (
         <div>
           <label htmlFor="organization" className={labelCls}>
-            Organization
+            {t("orgLabel")}
           </label>
           <input id="organization" name="organization" className={inputCls} />
         </div>
@@ -140,11 +148,11 @@ export function ContactForm() {
 
       <div>
         <label htmlFor="message" className={labelCls}>
-          Message
+          {t("messageLabel")}
         </label>
         <textarea id="message" name="message" required rows={5} className={`${inputCls} resize-y`} />
         {fieldErrors.message && (
-          <p className="mt-1.5 text-xs text-red-400">{fieldErrors.message[0]}</p>
+          <p className="mt-1.5 text-xs text-red-400">{t("errMessage")}</p>
         )}
       </div>
 
@@ -153,7 +161,7 @@ export function ContactForm() {
         disabled={status === "submitting"}
         className="rounded-full bg-[linear-gradient(115deg,#f6e7b2,#e8c76a_30%,#c9982f_100%)] px-7 py-3 text-sm font-bold text-night glow-gold transition-all duration-300 hover:brightness-110 disabled:opacity-60"
       >
-        {status === "submitting" ? "Sending…" : "Send Message"}
+        {status === "submitting" ? t("sendSending") : t("send")}
       </button>
 
       {genericError && <p className="text-sm text-red-400">{genericError}</p>}

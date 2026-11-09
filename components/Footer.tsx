@@ -31,26 +31,45 @@ export async function Footer({ locale }: { locale: string }) {
 
       <div className="relative mx-auto max-w-6xl px-6 pb-10 pt-16">
         <div className="mb-14 grid grid-cols-1 gap-10 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
-          {/* Brand block */}
+          {/* Brand block — logo-forward */}
           <div>
-            <div className="mb-4 flex items-center gap-3">
-              <Image src="/images/logo-mark.png" alt="IEDF logo mark" width={40} height={40} className="h-10 w-10" />
-              <span className="font-display text-2xl text-ink">
-                IEDF<span className="text-gold-grad">.</span>
+            <Link href={`/${locale}`} className="group mb-5 inline-flex flex-col items-start gap-4">
+              <span className="relative">
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-[-10px] rounded-full opacity-60 blur-xl transition-opacity duration-500 group-hover:opacity-90"
+                  style={{ background: "radial-gradient(circle, rgba(201,152,47,0.35), transparent 70%)" }}
+                />
+                <span className="glass-strong relative flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-2xl sm:h-[5.25rem] sm:w-[5.25rem]">
+                  <Image
+                    src="/images/logo-mark.png"
+                    alt="IEDF logo mark"
+                    width={72}
+                    height={72}
+                    className="h-14 w-14 sm:h-16 sm:w-16"
+                  />
+                </span>
               </span>
-            </div>
-            <p className="mb-1 font-display text-sm italic text-ink-muted">
-              Collaborate. Innovate. Invest. Prosper.
+              <span>
+                <span className="block font-display text-2xl text-ink sm:text-3xl">
+                  IEDF<span className="text-gold-grad">.</span>
+                </span>
+                <span className="mt-1 block max-w-[18ch] font-display text-[15px] leading-snug italic text-ink-muted sm:max-w-[22ch] sm:text-base">
+                  {t("orgName")}
+                </span>
+              </span>
+            </Link>
+            <p className="mb-1 font-data text-[10px] uppercase tracking-[0.22em] text-gold-bright">
+              {t("tagline")}
             </p>
-            <p className="max-w-[36ch] text-[13px] leading-relaxed text-ink-faint">
-              A diaspora-home founded, apolitical forum working toward a self-sustaining Ikeduru,
-              Imo State, Nigeria.
+            <p className="mt-3 max-w-[36ch] text-[13px] leading-relaxed text-ink-faint">
+              {t("blurb")}
             </p>
           </div>
 
           <nav aria-label="Footer — explore">
             <div className="mb-3 font-data text-[10px] font-semibold uppercase tracking-[0.28em] text-gold-bright">
-              Explore
+              {t("explore")}
             </div>
             <ul className="space-y-2">
               {explore.map((l) => (
@@ -65,7 +84,7 @@ export async function Footer({ locale }: { locale: string }) {
 
           <nav aria-label="Footer — get involved">
             <div className="mb-3 font-data text-[10px] font-semibold uppercase tracking-[0.28em] text-gold-bright">
-              Get involved
+              {t("getInvolved")}
             </div>
             <ul className="space-y-2">
               {getInvolved.map((l) => (
@@ -81,17 +100,17 @@ export async function Footer({ locale }: { locale: string }) {
           {/* Connect */}
           <div>
             <div className="mb-3 font-data text-[10px] font-semibold uppercase tracking-[0.28em] text-gold-bright">
-              Connect
+              {t("connect")}
             </div>
             <p className="mb-4 text-[13px] leading-relaxed text-ink-faint">
-              Follow our momentum — social channels launch soon.
+              {t("connectText")}
             </p>
             <a
               href={`/${locale}/contact`}
               className="glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-[13px] text-ink-muted transition-all duration-300 hover:border-gold/40 hover:text-gold-pale"
             >
               <Mail size={14} />
-              Reach the forum
+              {t("ctaReach")}
               <ArrowUpRight size={13} />
             </a>
           </div>

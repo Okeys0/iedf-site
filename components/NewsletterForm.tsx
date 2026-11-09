@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import { useTranslations } from "next-intl";
 import { CheckCircle2, Send } from "lucide-react";
 
 type NewsletterFormProps = {
@@ -9,6 +10,7 @@ type NewsletterFormProps = {
 };
 
 export function NewsletterForm({ placeholder, buttonLabel }: NewsletterFormProps) {
+  const t = useTranslations("forms");
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -29,7 +31,7 @@ export function NewsletterForm({ placeholder, buttonLabel }: NewsletterFormProps
     return (
       <div className="glass flex items-center justify-center gap-2.5 rounded-2xl px-5 py-4 text-sm text-mint">
         <CheckCircle2 size={17} />
-        Thank you for subscribing — you&apos;re on the list.
+        {t("newsletterSuccess")}
       </div>
     );
   }
@@ -52,14 +54,14 @@ export function NewsletterForm({ placeholder, buttonLabel }: NewsletterFormProps
         disabled={status === "submitting"}
         className="group/nlsh inline-flex items-center justify-center gap-2 rounded-full bg-[linear-gradient(115deg,#f6e7b2,#e8c76a_30%,#c9982f_100%)] px-6 py-3 text-sm font-bold text-night glow-gold transition-all duration-300 hover:brightness-110 disabled:opacity-60"
       >
-        {status === "submitting" ? "Sending…" : buttonLabel}
+        {status === "submitting" ? t("sending") : buttonLabel}
         {status !== "submitting" && (
           <Send size={14} className="transition-transform duration-300 group-hover/nlsh:translate-x-0.5 group-hover/nlsh:-translate-y-0.5" />
         )}
       </button>
       {status === "error" && (
         <p className="text-sm text-red-400 sm:basis-full">
-          Something went wrong — please try again.
+          {t("errorGeneric")}
         </p>
       )}
     </form>

@@ -60,3 +60,10 @@ export const roadmapAreas = [
   { slug: "industrialization", title: "Industrialization" },
   { slug: "education", title: "Education" },
 ];
+
+/** slug → message keys for translated title/summary (home + projects pages). */
+export const projectMessageKeys: Record<string, [string, string]> = {
+  "industrial-cluster": ["industrialClusterTitle", "industrialClusterSummary"],
+  "gas-to-power": ["gasToPowerTitle", "gasToPowerSummary"],
+  "okobi-collaboration": ["okobiTitle", "okobiSummary"],
+};

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { ArrowRight } from "lucide-react";
 import { Tag } from "./Tag";
 import { SpotlightCard } from "./SpotlightCard";
@@ -22,11 +23,20 @@ export type Project = {
   };
 };
 
+type ProjectCardProps = {
+  project: Project;
+  /** Translated title/summary (passed by server pages from messages).
+   *  When omitted, the English content values render. */
+  titleOverride?: string;
+  summaryOverride?: string;
+};
+
 /**
  * Premium glass project card: spotlight cursor glow, cinematic image
  * zoom, gold rim on hover, and an arrow affordance that slides in.
  */
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({ project, titleOverride, summaryOverride }: ProjectCardProps) {
+  const t = useTranslations("tags");
   function handleMove(e: React.MouseEvent<HTMLDivElement>) {
     const el = e.currentTarget;
     const rect = el.getBoundingClientRect();
@@ -63,18 +73,20 @@ export function ProjectCard({ project }: { project: Project }) {
           />
           <div className="absolute left-4 top-4">
             <Tag variant={project.status}>
-              {project.status === "active" ? "Active" : "Planned"}
+              {t(project.status)}
             </Tag>
           </div>
         </div>
 
         <div className="relative z-[1] flex flex-1 flex-col p-6 pt-1">
           <h3 className="mb-2 font-display text-[22px] leading-snug text-ink transition-colors duration-300 group-hover:text-gold-pale">
-            {project.title}
+            {titleOverride ?? project.title}
           </h3>
-          <p className="mb-5 flex-1 text-[13.5px] leading-relaxed text-ink-muted">{project.summary}</p>
+          <p className="mb-5 flex-1 text-[13.5px] leading-relaxed text-ink-muted">
+            {summaryOverride ?? project.summary}
+          </p>
           <div className="flex items-center gap-2 font-data text-[11px] font-semibold uppercase tracking-[0.2em] text-gold-bright opacity-0 transition-all duration-500 group-hover:opacity-100">
-            Explore
+            {t("explore")}
             <ArrowRight size={13} className="transition-transform duration-500 group-hover:translate-x-1.5" />
           </div>
         </div>

@@ -1,5 +1,15 @@
 import { Resend } from "resend";
 
+/** Escape user-controlled strings before interpolating into HTML email bodies. */
+export function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 /**
  * Sends an internal notification email to IEDF whenever a form is
  * submitted (see README "Connecting Resend" for setup).

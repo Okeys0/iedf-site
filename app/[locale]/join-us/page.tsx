@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { SubmitForm } from "@/components/SubmitForm";
 import { PageHero } from "@/components/PageHero";
+import { AccentLine } from "@/lib/accent";
 import { Reveal } from "@/components/motion/Reveal";
 import { SpotlightCard } from "@/components/SpotlightCard";
 import { Users, Gift, Sparkles, HeartHandshake } from "lucide-react";
@@ -17,17 +19,22 @@ const inputCls =
 const labelCls =
   "mb-1.5 block font-data text-[10px] font-semibold uppercase tracking-[0.2em] text-ink-muted";
 
-export default function JoinUsPage() {
+export default async function JoinUsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "joinUs" });
+
   return (
     <>
       <PageHero
-        eyebrow="Get involved"
+        eyebrow={t("eyebrow")}
         title={
-          <>
-            Add your hands to the <em className="text-gold-grad">work</em>
-          </>
+          <AccentLine text={t("heroTitle")} accent={t("heroTitleAccent")} />
         }
-        subline="Whether you're in Ikeduru or ten thousand kilometers away, there's a place for you in this mission — as a member, a volunteer, or a future supporter."
+        subline={t("heroSubline")}
       />
 
       <section className="mx-auto max-w-6xl px-6 pb-10">
@@ -41,42 +48,40 @@ export default function JoinUsPage() {
                   <Users size={20} strokeWidth={1.6} />
                 </div>
                 <span className="font-data text-[10px] font-semibold uppercase tracking-[0.25em]">
-                  Become a Member / Volunteer
+                  {t("memberLabel")}
                 </span>
               </div>
               <h2 className="mb-2.5 text-3xl">
-                Join the <em className="text-gold-grad">forum</em>
+                <AccentLine text={t("memberTitle")} accent={t("memberAccent")} />
               </h2>
               <p className="mb-7 text-[14px] leading-relaxed text-ink-muted">
-                IEDF draws committed Ikeduru sons and daughters — professionals, founders, and
-                community leaders at home and abroad. Tell us who you are and where your
-                passion lies; the executive committee follows up personally.
+                {t("memberText")}
               </p>
               <SubmitForm
                 action="/api/member-signup"
-                submitLabel="Submit application"
-                successMessage="Thank you — we've received your interest and will be in touch soon."
+                submitLabel={t("memberSubmit")}
+                successMessage={t("memberSuccess")}
               >
                 <div>
                   <label htmlFor="member-name" className={labelCls}>
-                    Full name
+                    {t("nameLabel")}
                   </label>
                   <input id="member-name" name="name" required className={inputCls} />
                 </div>
                 <div>
                   <label htmlFor="member-email" className={labelCls}>
-                    Email
+                    {t("emailLabel")}
                   </label>
                   <input id="member-email" name="email" type="email" required className={inputCls} />
                 </div>
                 <div>
                   <label htmlFor="member-interest" className={labelCls}>
-                    Area of interest
+                    {t("interestLabel")}
                   </label>
                   <select id="member-interest" name="interest" className={`${inputCls} appearance-none`}>
-                    <option value="member" className="bg-night">Become a member</option>
-                    <option value="volunteer" className="bg-night">Volunteer</option>
-                    <option value="both" className="bg-night">Both</option>
+                    <option value="member" className="bg-night">{t("interestMember")}</option>
+                    <option value="volunteer" className="bg-night">{t("interestVolunteer")}</option>
+                    <option value="both" className="bg-night">{t("interestBoth")}</option>
                   </select>
                 </div>
               </SubmitForm>
@@ -92,35 +97,33 @@ export default function JoinUsPage() {
                   <Gift size={20} strokeWidth={1.6} />
                 </div>
                 <span className="font-data text-[10px] font-semibold uppercase tracking-[0.25em]">
-                  Support IEDF
+                  {t("givingLabel")}
                 </span>
               </div>
               <h2 className="mb-2.5 text-3xl">
-                Fuel the <em className="text-gold-grad">momentum</em>
+                <AccentLine text={t("givingTitle")} accent={t("givingAccent")} />
               </h2>
               <p className="mb-7 text-[14px] leading-relaxed text-ink-muted">
-                Giving goes live the moment the forum&apos;s bank account and payment processor are
-                finalized. Register below and you&apos;ll be first to know — your early intent
-                directly shapes how we prioritize the roadmap:{" "}
-                <span className="text-gold-pale">healthcare, security, industrialization, education.</span>
+                {t("givingTextA")}{" "}
+                <span className="text-gold-pale">{t("givingRoadmap")}</span>
               </p>
               <SubmitForm
                 action="/api/member-signup"
-                submitLabel="Register my interest"
-                successMessage="Thank you — we'll reach out the moment live giving is available."
+                submitLabel={t("givingSubmit")}
+                successMessage={t("givingSuccess")}
                 variant="secondary"
               >
                 <input type="hidden" name="interest" value="giving-intent" />
                 <div>
                   <label htmlFor="support-email" className={labelCls}>
-                    Email
+                    {t("givingEmail")}
                   </label>
                   <input
                     id="support-email"
                     name="email"
                     type="email"
                     required
-                    placeholder="you@example.com"
+                    placeholder={t("givingPlaceholder")}
                     className={inputCls}
                   />
                 </div>
@@ -130,9 +133,7 @@ export default function JoinUsPage() {
               <div className="mt-7 flex items-start gap-3 rounded-2xl border border-white/[0.07] bg-white/[0.02] p-4">
                 <Sparkles size={16} className="mt-0.5 shrink-0 text-gold-bright" />
                 <p className="text-[12.5px] leading-relaxed text-ink-faint">
-                  Every naira, dollar, and euro goes to projects — not overhead. Financial
-                  oversight rests with the Treasurer, an internationally affiliated chartered
-                  accountant.
+                  {t("trustNote")}
                 </p>
               </div>
             </SpotlightCard>
@@ -144,11 +145,10 @@ export default function JoinUsPage() {
           <div className="glass rounded-[2rem] p-8 text-center sm:p-10">
             <HeartHandshake size={22} strokeWidth={1.5} className="mx-auto mb-4 text-gold-bright" />
             <h2 className="mb-2 text-2xl">
-              There are more ways to <em className="text-gold-grad">move</em> Ikeduru
+              <AccentLine text={t("moreTitle")} accent={t("moreAccent")} />
             </h2>
             <p className="mx-auto max-w-xl text-[14px] leading-relaxed text-ink-muted">
-              Investor introductions, press inquiries, or skills-based volunteering — start
-              from the contact page and we&apos;ll route you to the right hands.
+              {t("moreText")}
             </p>
           </div>
         </Reveal>

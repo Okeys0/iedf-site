@@ -6,9 +6,17 @@ type ExpandableTextProps = {
   paragraphs: string[];
   /** How many paragraphs show before the "Read more" toggle. Default 2. */
   initiallyShown?: number;
+  /** Toggle labels (translated by the caller; English defaults). */
+  readMoreLabel?: string;
+  showLessLabel?: string;
 };
 
-export function ExpandableText({ paragraphs, initiallyShown = 2 }: ExpandableTextProps) {
+export function ExpandableText({
+  paragraphs,
+  initiallyShown = 2,
+  readMoreLabel = "Read more",
+  showLessLabel = "Show less",
+}: ExpandableTextProps) {
   const [expanded, setExpanded] = useState(false);
 
   const visible = expanded ? paragraphs : paragraphs.slice(0, initiallyShown);
@@ -28,7 +36,7 @@ export function ExpandableText({ paragraphs, initiallyShown = 2 }: ExpandableTex
           className="group inline-flex items-center gap-2 font-data text-xs font-semibold uppercase tracking-[0.2em] text-gold-bright transition-colors hover:text-gold-pale focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-bright"
         >
           <span className="hairline-gold h-px w-6 transition-all duration-300 group-hover:w-9" />
-          {expanded ? "Show less" : "Read more"}
+          {expanded ? showLessLabel : readMoreLabel}
         </button>
       )}
     </div>

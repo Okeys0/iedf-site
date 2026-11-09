@@ -67,10 +67,12 @@
   --color-ink-faint: var(--color-ink-faint);
 
   --font-display: var(--font-instrument-serif), Georgia, serif;
+  --font-prestige: var(--font-playfair), "Times New Roman", Georgia, serif;
   --font-body: var(--font-work-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-data: var(--font-plex-mono), ui-monospace, monospace;
 
   --radius-base: var(--radius-base);
+  --font-family-prestige: var(--font-prestige);
 }
 
 /* ═══════════════════════════ Base ═══════════════════════ */

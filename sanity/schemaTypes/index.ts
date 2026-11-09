@@ -75,8 +75,11 @@ export const community = {
   title: "Autonomous Community",
   type: "document",
   fields: [
+    { name: "order", title: "Display order", type: "number" },
     { name: "name", title: "Name", type: "string" },
-    { name: "summary", title: "Summary", type: "text" },
+    { name: "ruler", title: "Traditional ruler", type: "string" },
+    { name: "context", title: "Parenthetical context", type: "string" },
+    { name: "note", title: "Note", type: "string" },
   ],
 };
 

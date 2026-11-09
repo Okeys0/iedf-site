@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Tag } from "@/components/Tag";
-import { activeProjects, roadmapAreas } from "@/lib/content/projects";
+import {
+  activeProjects,
+  projectMessageKeys,
+  roadmapAreas,
+} from "@/lib/content/projects";
 import { Button } from "@/components/Button";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
+import { AccentLine } from "@/lib/accent";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { SpotlightCard } from "@/components/SpotlightCard";
 import { Compass, FileDown } from "lucide-react";
@@ -15,42 +21,55 @@ export const metadata: Metadata = {
     "IEDF's active initiatives — the Atta-Inyishi-Amaimo industrial cluster, gas-to-power project, and OKOBI collaboration — plus our 1–3 year strategic roadmap.",
 };
 
+/** roadmap slug → message key (labels for the strategic-horizon band). */
+const areaKeys: Record<string, string> = {
+  healthcare: "areaHealthcare",
+  security: "areaSecurity",
+  industrialization: "areaIndustrialization",
+  education: "areaEducation",
+};
+
 export default async function ProjectsPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "projects" });
+  const tTags = await getTranslations({ locale, namespace: "tags" });
 
   return (
     <>
       <PageHero
-        eyebrow="Projects & Initiatives"
+        eyebrow={t("eyebrow")}
         title={
-          <>
-            What&apos;s <em className="text-gold-grad">active</em> — and where the strategy heads
-          </>
+          <AccentLine text={t("heroTitle")} accent={t("heroTitleAccent")} />
         }
-        subline="Initiatives already in motion, and the 1–3 year horizon we are steering toward."
+        subline={t("heroSubline")}
       />
 
       {/* Active initiatives */}
       <section className="mx-auto max-w-6xl px-6 pb-24">
         <SectionHeading
-          eyebrow="Active today"
+          eyebrow={t("activeEyebrow")}
           align="left"
           title={
-            <>
-              In <em className="text-gold-grad">motion</em>
-            </>
+            <AccentLine text={t("activeTitle")} accent={t("activeAccent")} />
           }
         />
         <RevealGroup className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {activeProjects.map((project) => (
-            <RevealItem key={project.slug}>
-              <ProjectCard project={project} />
-            </RevealItem>
-          ))}
+          {activeProjects.map((project) => {
+            const keys = projectMessageKeys[project.slug];
+            return (
+              <RevealItem key={project.slug}>
+                <ProjectCard
+                  project={project}
+                  titleOverride={keys ? t(keys[0]) : undefined}
+                  summaryOverride={keys ? t(keys[1]) : undefined}
+                />
+              </RevealItem>
+            );
+          })}
         </RevealGroup>
       </section>
 
@@ -72,13 +91,11 @@ export default async function ProjectsPage({
 
         <div className="relative mx-auto max-w-6xl">
           <SectionHeading
-            eyebrow="2026 – 2029"
+            eyebrow={t("roadmapEyebrow")}
             title={
-              <>
-                The strategic <em className="text-gold-grad">roadmap</em>
-              </>
+              <AccentLine text={t("roadmapTitle")} accent={t("roadmapAccent")} />
             }
-            subline="Where we're headed — directional targets, clearly distinguished from active commitments above."
+            subline={t("roadmapSubline")}
           />
           <RevealGroup className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4" stagger={0.13}>
             {roadmapAreas.map((area, i) => (
@@ -93,9 +110,11 @@ export default async function ProjectsPage({
                     {String(i + 1).padStart(2, "0")}
                   </div>
                   <div className="mb-4 flex justify-center">
-                    <Tag variant="planned">Planned</Tag>
+                    <Tag variant="planned">{tTags("planned")}</Tag>
                   </div>
-                  <div className="font-display text-2xl italic text-ink">{area.title}</div>
+                  <div className="font-display text-2xl italic text-ink">
+                    {areaKeys[area.slug] ? t(areaKeys[area.slug]) : area.title}
+                  </div>
                 </SpotlightCard>
               </RevealItem>
             ))}
@@ -111,18 +130,17 @@ export default async function ProjectsPage({
               <div className="flex items-center gap-3 text-gold-bright">
                 <Compass size={18} strokeWidth={1.6} />
                 <span className="font-data text-[10px] font-semibold uppercase tracking-[0.25em]">
-                  For investors
+                  {t("investLabel")}
                 </span>
               </div>
               <p className="font-display text-2xl italic leading-snug text-ink">
-               Interested in investing in Ikeduru?
+                {t("investTitle")}
               </p>
               <p className="flex-1 text-[13.5px] leading-relaxed text-ink-muted">
-                IEDF acts as a think tank and resource entity for investors interested in
-                Ikeduru — we&apos;ll connect you to the right opportunity and people.
+                {t("investText")}
               </p>
               <div>
-                <Button href={`/${locale}/contact`}>Contact the forum</Button>
+                <Button href={`/${locale}/contact`}>{t("investCta")}</Button>
               </div>
             </SpotlightCard>
           </RevealItem>
@@ -131,18 +149,17 @@ export default async function ProjectsPage({
               <div className="flex items-center gap-3 text-gold-bright">
                 <FileDown size={18} strokeWidth={1.6} />
                 <span className="font-data text-[10px] font-semibold uppercase tracking-[0.25em]">
-                  Resource pack
+                  {t("resourceLabel")}
                 </span>
               </div>
               <p className="font-display text-2xl italic leading-snug text-ink">
-                Project overview PDF
+                {t("resourceTitle")}
               </p>
               <p className="flex-1 text-[13.5px] leading-relaxed text-ink-muted">
-                A downloadable investor briefing covering the industrial cluster, power
-                corridor, and OKOBI partnership — arriving post-launch.
+                {t("resourceText")}
               </p>
               <span className="font-data text-[11px] uppercase tracking-[0.2em] text-ink-faint">
-                Coming soon
+                {t("resourceNote")}
               </span>
             </SpotlightCard>
           </RevealItem>

@@ -1,53 +1,26 @@
 import { getTranslations } from "next-intl/server";
-import { Handshake, Lightbulb, TrendingUp, Sprout } from "lucide-react";
 import Image from "next/image";
+import { ArrowRight, Handshake, Lightbulb, TrendingUp, Sprout } from "lucide-react";
 import { Button } from "@/components/Button";
 import { Marquee } from "@/components/Marquee";
 import { MilestoneLine } from "@/components/MilestoneLine";
 import { ProjectCard } from "@/components/ProjectCard";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { SectionHeading } from "@/components/SectionHeading";
+import { AccentLine } from "@/lib/accent";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { Counter } from "@/components/motion/Counter";
 import { SpotlightCard } from "@/components/SpotlightCard";
-import { activeProjects } from "@/lib/content/projects";
+import { activeProjects, projectMessageKeys } from "@/lib/content/projects";
 import { autonomousCommunities } from "@/lib/content/communities";
+import { leaders } from "@/lib/content/leadership";
 
-/** Highlights the given keyword inside a translated heading with the
- *  italic-gold editorial treatment (falls back to plain if absent). */
-function accentHeadline(text: string, keyword: string) {
-  const idx = text.indexOf(keyword);
-  if (idx === -1) return <>{text}</>;
-  return (
-    <>
-      {text.slice(0, idx)}
-      <em className="italic text-gold-grad">{keyword}</em>
-      {text.slice(idx + keyword.length)}
-    </>
-  );
-}
-
-const pillars = [
-  {
-    icon: Handshake,
-    title: "Collaborate",
-    text: "Uniting Ikeduru's sons and daughters — at home and across the diaspora — around a shared development agenda.",
-  },
-  {
-    icon: Lightbulb,
-    title: "Innovate",
-    text: "Incubating ideas and promoting innovation that turns Ikeduru's latent potential into real opportunity.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Invest",
-    text: "Building investment capacity for private-sector led growth — from agro-allied industry to power.",
-  },
-  {
-    icon: Sprout,
-    title: "Prosper",
-    text: "Growing a socially vibrant, prosperous, and self-sustaining Ikeduru for generations to come.",
-  },
+/** Pillars are icon + translation-key pairs (en/ig in messages/*.json). */
+const pillarDefs = [
+  { icon: Handshake, titleKey: "pillarCollaborate", textKey: "pillarCollaborateText" },
+  { icon: Lightbulb, titleKey: "pillarInnovate", textKey: "pillarInnovateText" },
+  { icon: TrendingUp, titleKey: "pillarInvest", textKey: "pillarInvestText" },
+  { icon: Sprout, titleKey: "pillarProsper", textKey: "pillarProsperText" },
 ];
 
 export default async function HomePage({
@@ -57,6 +30,7 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "home" });
+  const tProjects = await getTranslations({ locale, namespace: "projects" });
 
   const milestones = [
     { date: t("milestoneFoundedDate"), label: t("milestoneFounded") },
@@ -65,104 +39,129 @@ export default async function HomePage({
   ];
 
   const stats = [
-    { value: t("milestoneFoundedDate"), label: "Founded" },
-    { value: t("milestoneInauguratedDate"), label: "Executives Inaugurated" },
-    { value: String(activeProjects.length), label: "Active Initiatives" },
-    { value: String(autonomousCommunities.length), label: "Autonomous Communities" },
+    { value: "2025", label: t("statFounded") },
+    { value: String(leaders.length), label: t("statExecutives") },
+    { value: String(activeProjects.length), label: t("statInitiatives") },
+    { value: String(autonomousCommunities.length), label: t("statCommunities") },
   ];
 
   return (
     <>
-      {/* ═══════════ HERO — cinematic, centered, auroral ═══════════ */}
-      <section className="relative flex min-h-[92svh] flex-col items-center justify-center px-6 pt-32 pb-16 text-center">
-        {/* Floating logo badge */}
-        <Reveal when="load">
-          <div
-            className="relative mb-8 h-[86px] w-[86px]"
-            style={{ animation: "float-slow 7s ease-in-out infinite" }}
-          >
-            <div
-              aria-hidden="true"
-              className="absolute inset-[-14px] rounded-full opacity-70 blur-xl"
-              style={{ background: "radial-gradient(circle, rgba(201,152,47,0.4), transparent 70%)" }}
-            />
-            <div className="glass-strong absolute inset-0 flex items-center justify-center rounded-full">
-              <Image
-                src="/images/logo-mark.png"
-                alt=""
-                width={44}
-                height={44}
-                className="h-11 w-11"
-              />
+      {/* ═══════════ HERO — phone-first, glassy, brand-forward ═══════════ */}
+      <section className="relative flex min-h-[100svh] flex-col px-5 pb-6 pt-[6.75rem] sm:px-6 sm:pb-14 sm:pt-36">
+        {/* Local atmosphere — gold + emerald washes behind the type */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-[22%] h-[16rem] w-[16rem] -translate-x-1/2 rounded-full opacity-55 blur-[80px] sm:top-[28%] sm:h-[26rem] sm:w-[26rem]"
+          style={{ background: "radial-gradient(circle, rgba(201,152,47,0.32), transparent 68%)" }}
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-[22%] right-[-6%] h-36 w-36 rounded-full opacity-45 blur-[60px] sm:bottom-[18%] sm:left-[8%] sm:right-auto sm:h-56 sm:w-56"
+          style={{ background: "radial-gradient(circle, rgba(47,158,99,0.38), transparent 70%)" }}
+        />
+
+        <div className="relative mx-auto flex w-full max-w-3xl flex-1 flex-col justify-center text-center">
+          <Reveal when="load">
+            <div className="mb-5 flex flex-col items-center gap-3 sm:mb-8 sm:gap-4">
+              <span aria-hidden="true" className="hairline-gold h-px w-14 sm:w-20" />
+              <div className="flex w-full max-w-4xl items-center justify-center gap-4 sm:gap-6 md:gap-8">
+                <span className="relative shrink-0">
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-[-16px] rounded-full opacity-85 blur-xl"
+                    style={{ background: "radial-gradient(circle, rgba(201,152,47,0.5), transparent 70%)" }}
+                  />
+                  <span className="glass-strong relative flex h-24 w-24 items-center justify-center rounded-[1.4rem] sm:h-32 sm:w-32 sm:rounded-[1.75rem] md:h-36 md:w-36">
+                    <Image
+                      src="/images/logo-mark.png"
+                      alt=""
+                      width={128}
+                      height={128}
+                      priority
+                      className="h-[4.75rem] w-[4.75rem] sm:h-24 sm:w-24 md:h-28 md:w-28"
+                    />
+                  </span>
+                </span>
+                <p className="font-prestige min-w-0 flex-1 text-left text-[clamp(1.55rem,4.8vw,2.75rem)] font-extrabold leading-[1.08] tracking-[-0.01em] text-ink">
+                  {t("heroBrand")}
+                </p>
+              </div>
+              <p className="font-data text-[9px] font-medium uppercase tracking-[0.22em] text-gold-bright sm:text-[10px] sm:tracking-[0.34em]">
+                {t("motto1")} · {t("motto2")} · {t("motto3")} · {t("motto4")}
+              </p>
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
 
-        <Reveal when="load" delay={0.12}>
-          <p className="mb-6 font-data text-[11px] font-medium uppercase tracking-[0.34em] text-ink-muted">
-            Ikeduru Economic Development Forum
-          </p>
-        </Reveal>
+          <Reveal when="load" delay={0.08}>
+            <h1 className="mx-auto max-w-[13ch] text-[clamp(2.15rem,9.5vw,4.25rem)] leading-[1.05] tracking-tight text-ink-muted sm:max-w-4xl sm:text-ink">
+              <AccentLine text={t("heroHeadline")} accent={t("heroAccent")} />
+            </h1>
+          </Reveal>
 
-        <Reveal when="load" delay={0.22}>
-          <h1 className="mx-auto max-w-4xl text-[13.5vw] leading-[1.04] sm:text-6xl md:text-7xl">
-            {accentHeadline(t("heroHeadline"), "self-sustaining")}
-          </h1>
-        </Reveal>
+          <Reveal when="load" delay={0.18}>
+            <p className="mx-auto mt-4 max-w-[28ch] text-[14.5px] leading-snug text-ink-muted sm:mt-6 sm:hidden">
+              {t("heroSubheadMobile")}
+            </p>
+            <p className="mx-auto mt-6 hidden max-w-xl text-lg leading-relaxed text-ink-muted sm:block">
+              {t("heroSubhead")}
+            </p>
+          </Reveal>
 
-        <Reveal when="load" delay={0.34}>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted">
-            {t("heroSubhead")}
-          </p>
-        </Reveal>
-
-        <Reveal when="load" delay={0.46}>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3.5">
-            <Button href={`/${locale}/join-us`} size="lg">
-              {t("ctaJoin")}
-            </Button>
-            <Button href={`/${locale}/about`} variant="secondary" size="lg">
-              {t("ctaLearnMore")}
-            </Button>
-          </div>
-        </Reveal>
-
-        {/* Glass fact chips */}
-        <Reveal when="load" delay={0.58}>
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
-            {[
-              { value: "Est.", label: t("milestoneFoundedDate") },
-              { value: String(autonomousCommunities.length), label: "Communities" },
-              { value: "3", label: "Continents" },
-            ].map((chip) => (
-              <span
-                key={chip.label}
-                className="glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-[13px]"
+          <Reveal when="load" delay={0.28}>
+            <div className="mt-7 flex w-full flex-col gap-2.5 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-3.5">
+              <Button href={`/${locale}/join-us`} size="lg" className="w-full shadow-[0_12px_40px_-10px_rgba(201,152,47,0.55)] sm:w-auto">
+                {t("ctaJoin")}
+                <ArrowRight size={16} className="transition-transform group-hover/btn:translate-x-0.5" />
+              </Button>
+              <Button
+                href={`/${locale}/about`}
+                variant="secondary"
+                size="lg"
+                className="w-full sm:w-auto"
               >
-                <span className="font-data font-semibold text-gold-bright">{chip.value}</span>
-                <span className="text-ink-muted">{chip.label}</span>
-              </span>
-            ))}
-          </div>
-        </Reveal>
+                {t("ctaLearnMore")}
+              </Button>
+            </div>
+          </Reveal>
 
-        {/* Scroll cue */}
-        <Reveal when="load" delay={0.75}>
-          <div
-            aria-hidden="true"
-            className="mt-14 flex flex-col items-center gap-2 text-ink-faint"
-          >
-            <span className="font-data text-[9px] uppercase tracking-[0.3em]">Scroll</span>
+          <Reveal when="load" delay={0.4} className="mt-7 sm:mt-12">
+            <div className="glass-strong mx-auto flex w-full max-w-md items-stretch justify-between rounded-2xl border border-white/10 px-1.5 py-2.5 sm:max-w-xl sm:rounded-full sm:px-2 sm:py-2">
+              {[
+                { value: t("chipEst"), label: t("milestoneFoundedDate") },
+                { value: String(autonomousCommunities.length), label: t("chipCommunities") },
+                { value: t("chipContinentsValue"), label: t("chipContinents") },
+              ].map((chip, i) => (
+                <div key={chip.label} className="flex min-w-0 flex-1 items-center">
+                  {i > 0 && (
+                    <span aria-hidden="true" className="h-7 w-px shrink-0 bg-white/10" />
+                  )}
+                  <div className="flex min-w-0 flex-1 flex-col items-center gap-0.5 px-1.5 sm:flex-row sm:justify-center sm:gap-2 sm:px-4">
+                    <span className="font-data text-[12px] font-semibold text-gold-bright sm:text-sm">
+                      {chip.value}
+                    </span>
+                    <span className="truncate text-[9px] leading-tight text-ink-faint sm:text-[12px] sm:text-ink-muted">
+                      {chip.label}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+
+        <div
+          aria-hidden="true"
+          className="relative mt-5 hidden flex-col items-center gap-2 text-ink-faint sm:mt-8 sm:flex"
+        >
+          <span className="font-data text-[9px] uppercase tracking-[0.3em]">{t("scroll")}</span>
+          <span className="flex h-9 w-6 items-start justify-center rounded-full border border-white/15 p-1.5">
             <span
-              className="flex h-9 w-6 items-start justify-center rounded-full border border-white/15 p-1.5"
-            >
-              <span
-                className="h-2 w-0.5 rounded-full bg-gold-bright"
-                style={{ animation: "scroll-cue 1.8s ease-in-out infinite" }}
-              />
-            </span>
-          </div>
-        </Reveal>
+              className="h-2 w-0.5 rounded-full bg-gold-bright"
+              style={{ animation: "scroll-cue 1.8s ease-in-out infinite" }}
+            />
+          </span>
+        </div>
       </section>
 
       {/* ═══════════ Brand marquee ═══════════ */}
@@ -173,23 +172,28 @@ export default async function HomePage({
         <SectionHeading
           eyebrow={t("featuredProjectsTitle")}
           title={
-            <>
-              Momentum is <em className="text-gold-grad">building</em>
-            </>
+            <AccentLine text={t("featuredTitle")} accent={t("featuredAccent")} />
           }
-          subline="Active initiatives already moving Ikeduru's economy — each one chosen for catalytic impact."
+          subline={t("featuredSubline")}
         />
         <RevealGroup className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {activeProjects.map((project) => (
-            <RevealItem key={project.slug}>
-              <ProjectCard project={project} />
-            </RevealItem>
-          ))}
+          {activeProjects.map((project) => {
+            const keys = projectMessageKeys[project.slug];
+            return (
+              <RevealItem key={project.slug}>
+                <ProjectCard
+                  project={project}
+                  titleOverride={keys ? tProjects(keys[0]) : undefined}
+                  summaryOverride={keys ? tProjects(keys[1]) : undefined}
+                />
+              </RevealItem>
+            );
+          })}
         </RevealGroup>
 
         <Reveal className="mt-10 text-center">
           <Button href={`/${locale}/projects`} variant="ghost">
-            View all projects &amp; the roadmap →
+            {t("viewProjects")}
           </Button>
         </Reveal>
       </section>
@@ -197,23 +201,21 @@ export default async function HomePage({
       {/* ═══════════ How the forum works ═══════════ */}
       <section className="mx-auto max-w-6xl px-6 pb-24 sm:pb-28">
         <SectionHeading
-          eyebrow="Our approach"
+          eyebrow={t("approachEyebrow")}
           title={
-            <>
-              Four words. One <em className="text-gold-grad">mission</em>.
-            </>
+            <AccentLine text={t("approachTitle")} accent={t("approachAccent")} />
           }
-          subline="The ethos on our pledge — carried into everything we do."
+          subline={t("approachSubline")}
         />
         <RevealGroup className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4" stagger={0.14}>
-          {pillars.map((pillar) => (
-            <RevealItem key={pillar.title}>
+          {pillarDefs.map((pillar) => (
+            <RevealItem key={pillar.titleKey}>
               <SpotlightCard className="glass-hover group h-full rounded-3xl p-7">
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-gold/25 bg-gold/10 text-gold-bright transition-all duration-500 group-hover:scale-110 group-hover:bg-gold/20">
                   <pillar.icon size={22} strokeWidth={1.6} />
                 </div>
-                <h3 className="mb-2 font-display text-2xl italic text-ink">{pillar.title}</h3>
-                <p className="text-[13px] leading-relaxed text-ink-muted">{pillar.text}</p>
+                <h3 className="mb-2 font-display text-2xl italic text-ink">{t(pillar.titleKey)}</h3>
+                <p className="text-[13px] leading-relaxed text-ink-muted">{t(pillar.textKey)}</p>
               </SpotlightCard>
             </RevealItem>
           ))}
@@ -225,9 +227,7 @@ export default async function HomePage({
         <SectionHeading
           eyebrow={t("momentumTitle")}
           title={
-            <>
-              The numbers <em className="text-gold-grad">tell it</em>
-            </>
+            <AccentLine text={t("numbersTitle")} accent={t("numbersAccent")} />
           }
         />
         <RevealGroup className="mt-14 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4" stagger={0.12}>

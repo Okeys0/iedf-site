@@ -6,6 +6,7 @@ type ButtonProps = {
   children: ReactNode;
   variant?: "primary" | "secondary" | "ghost";
   size?: "md" | "lg";
+  className?: string;
 };
 
 /**
@@ -13,9 +14,15 @@ type ButtonProps = {
  * Secondary: frosted glass with gold hover rim.
  * Ghost: quiet, for low-emphasis actions in bands.
  */
-export function Button({ href, children, variant = "primary", size = "md" }: ButtonProps) {
+export function Button({
+  href,
+  children,
+  variant = "primary",
+  size = "md",
+  className = "",
+}: ButtonProps) {
   const sizeCls = size === "lg" ? "px-7 py-3.5 text-[15px]" : "px-5 py-2.5 text-sm";
-  const base = `group/btn inline-flex items-center gap-2 rounded-full ${sizeCls} font-semibold transition-all duration-300`;
+  const base = `group/btn inline-flex items-center justify-center gap-2 rounded-full ${sizeCls} font-semibold transition-all duration-300`;
 
   const styles =
     variant === "primary"
@@ -25,7 +32,7 @@ export function Button({ href, children, variant = "primary", size = "md" }: But
         : "text-ink-muted hover:text-gold-pale border border-transparent hover:border-white/10";
 
   return (
-    <Link href={href} className={`${base} ${styles}`}>
+    <Link href={href} className={`${base} ${styles} ${className}`.trim()}>
       {children}
     </Link>
   );

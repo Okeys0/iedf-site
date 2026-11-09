@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import { useTranslations } from "next-intl";
 import { CheckCircle2 } from "lucide-react";
 
 type SubmitFormProps = {
@@ -24,6 +25,7 @@ export function SubmitForm({
   successMessage,
   variant = "primary",
 }: SubmitFormProps) {
+  const t = useTranslations("forms");
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">(
     "idle"
   );
@@ -60,11 +62,11 @@ export function SubmitForm({
     <form onSubmit={handleSubmit} className="space-y-3.5">
       {children}
       <button type="submit" disabled={status === "submitting"} className={buttonClass}>
-        {status === "submitting" ? "Sending…" : submitLabel}
+        {status === "submitting" ? t("sending") : submitLabel}
       </button>
       {status === "error" && (
         <p className="text-sm text-red-400">
-          Something went wrong — please try again, or email us directly.
+          {t("errorGeneric")}
         </p>
       )}
     </form>
