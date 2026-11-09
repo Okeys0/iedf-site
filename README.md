@@ -3,16 +3,26 @@
 Production codebase for the Ikeduru Economic Development Forum website.
 Prepared by Okeys Ononiwu Consulting.
 
+> **AI agents / returning contributors:** start with **[`AGENTS.md`](./AGENTS.md)** —
+> it maps the codebase, records what has been done, and lists where to continue.
+
 This implements **Milestone 1 (Foundations) + a working start on Milestone 2
 (Core Pages)** from the Development Roadmap — the project shell, design
 system, i18n routing, content model, and form architecture are all in place
 and functioning; several pages carry clearly-marked placeholder content
 pending real copy (see "What's Real vs. Placeholder" below).
 
+**November 2026:** full visual overhaul to the dark **"Emerald Luxe"**
+design system — aurora-gradient atmosphere, frosted glass surfaces, gold
+accents, Instrument Serif editorial typography, and cinematic Framer Motion
+throughout. Design-system reference: `app/globals.css`; session history:
+`AGENTS.md`.
+
 ## Stack
 
 - **Next.js 16** (App Router) + **TypeScript**
-- **Tailwind CSS v4** (CSS-based theme — design tokens live in `app/globals.css`)
+- **Tailwind CSS v4** (Emerald Luxe design tokens + glass system in `app/globals.css`)
+- **Framer Motion (`motion`)** — reveals, counters, scroll progress, spotlight hovers
 - **next-intl** for English/Igbo routing (`/en`, `/ig`)
 - **Zod** for form validation
 - **Sanity** (schema defined in `/sanity`, not yet connected to a live project)
