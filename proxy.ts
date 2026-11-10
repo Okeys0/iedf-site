@@ -4,6 +4,7 @@ import { routing } from "./i18n/routing";
 export default createProxy(routing);
 
 export const config = {
-  // Match all paths except static assets, API routes, and Next.js internals
-  matcher: ["/((?!api|_next|.*\\..*).*)"],
+  // Skip static assets, API routes, Next internals, and the admin console
+  // so /admin is not rewritten to /en/admin.
+  matcher: ["/((?!api|_next|admin|.*\\..*).*)"],
 };
