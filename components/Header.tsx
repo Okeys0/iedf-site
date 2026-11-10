@@ -73,22 +73,15 @@ export function Header() {
               : "border border-gold/15 bg-forest/25 backdrop-blur-md"
           }`}
         >
-          {/* Brand */}
-          <Link href={`/${locale}`} className="group flex items-center gap-2.5" aria-label="IEDF home">
-            <span className="relative">
-              {/* Gold glow background */}
-              <span 
-                className="absolute inset-[-4px] rounded-xl bg-gradient-to-br from-gold-pale/20 to-gold/10 opacity-40 blur-sm"
-                aria-hidden="true"
-              />
-              <Image
-                src="/images/logo-full.png"
-                alt="IEDF"
-                width={80}
-                height={96}
-                className="relative h-12 w-auto transition-transform duration-500 group-hover:scale-105"
-              />
-            </span>
+          {/* Brand — full logo only, no frame */}
+          <Link href={`/${locale}`} className="group flex items-center" aria-label="IEDF home">
+            <Image
+              src="/images/logo-mark.png"
+              alt="Ikeduru Economic Development Forum"
+              width={120}
+              height={120}
+              className="h-14 w-auto transition-transform duration-500 group-hover:scale-105 [filter:drop-shadow(0_0_10px_rgba(246,231,178,0.55))]"
+            />
           </Link>
 
           {/* Desktop nav — flat links only, no dropdowns */}

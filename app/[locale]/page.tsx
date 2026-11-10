@@ -65,30 +65,14 @@ export default async function HomePage({
           <Reveal when="load">
             <div className="mb-5 flex flex-col items-center gap-3 sm:mb-8 sm:gap-4">
               <span aria-hidden="true" className="hairline-gold h-px w-14 sm:w-20" />
-              <div className="flex w-full max-w-4xl items-center justify-center gap-4 sm:gap-6 md:gap-8">
-                <span className="relative shrink-0">
-                  {/* Gold radial glow behind logo */}
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-[-20px] rounded-3xl opacity-70 blur-2xl"
-                    style={{ background: "radial-gradient(circle, rgba(246,231,178,0.4), rgba(212,167,52,0.25) 60%, transparent 85%)" }}
-                  />
-                  {/* Subtle light background panel for logo */}
-                  <span className="relative flex items-center justify-center rounded-2xl bg-gradient-to-br from-gold-pale/12 to-gold/6 p-6 backdrop-blur-sm sm:p-8 md:p-10">
-                    <Image
-                      src="/images/logo-full.png"
-                      alt="IEDF"
-                      width={160}
-                      height={192}
-                      priority
-                      className="h-auto w-32 sm:w-40 md:w-44"
-                    />
-                  </span>
-                </span>
-                <p className="font-prestige min-w-0 flex-1 text-left text-[clamp(1.55rem,4.8vw,2.75rem)] font-extrabold leading-[1.08] tracking-[-0.01em] text-ink">
-                  {t("heroBrand")}
-                </p>
-              </div>
+              <Image
+                src="/images/logo-mark.png"
+                alt="Ikeduru Economic Development Forum"
+                width={280}
+                height={280}
+                priority
+                className="h-auto w-44 sm:w-56 md:w-64 [filter:drop-shadow(0_0_22px_rgba(246,231,178,0.55))]"
+              />
               <p className="font-data text-[9px] font-medium uppercase tracking-[0.22em] text-gold-bright sm:text-[10px] sm:tracking-[0.34em]">
                 {t("motto1")} · {t("motto2")} · {t("motto3")} · {t("motto4")}
               </p>

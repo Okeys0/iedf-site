@@ -33,25 +33,14 @@ export async function Footer({ locale }: { locale: string }) {
         <div className="mb-14 grid grid-cols-1 gap-10 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           {/* Brand block — logo-forward */}
           <div>
-            <Link href={`/${locale}`} className="group mb-5 inline-flex flex-col items-center gap-4">
-              <span className="relative">
-                {/* Soft gold background glow */}
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-[-12px] rounded-3xl opacity-50 blur-xl transition-opacity duration-500 group-hover:opacity-70"
-                  style={{ background: "radial-gradient(circle, rgba(246,231,178,0.35), rgba(212,167,52,0.2) 50%, transparent 80%)" }}
-                />
-                {/* Subtle light background for logo visibility */}
-                <span className="relative flex items-center justify-center rounded-2xl bg-gradient-to-br from-gold-pale/15 to-gold/8 p-6 backdrop-blur-sm">
-                  <Image
-                    src="/images/logo-full.png"
-                    alt="IEDF"
-                    width={140}
-                    height={168}
-                    className="h-auto w-32 transition-transform duration-500 group-hover:scale-105 sm:w-36"
-                  />
-                </span>
-              </span>
+            <Link href={`/${locale}`} className="group mb-5 inline-flex">
+              <Image
+                src="/images/logo-mark.png"
+                alt="Ikeduru Economic Development Forum"
+                width={220}
+                height={220}
+                className="h-auto w-40 transition-transform duration-500 group-hover:scale-105 sm:w-48 [filter:drop-shadow(0_0_16px_rgba(246,231,178,0.5))]"
+              />
             </Link>
             <p className="mb-1 font-data text-[10px] uppercase tracking-[0.22em] text-gold-bright">
               {t("tagline")}
