@@ -33,13 +33,21 @@ export async function Footer({ locale }: { locale: string }) {
         <div className="mb-14 grid grid-cols-1 gap-10 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           {/* Brand block — logo-forward */}
           <div>
-            <Link href={`/${locale}`} className="group mb-5 inline-flex">
+            <Link href={`/${locale}`} className="group relative mb-5 inline-flex">
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-[-16%] rounded-full blur-lg"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at center, rgba(255,248,230,0.32) 0%, rgba(255,248,230,0.1) 58%, transparent 76%)",
+                }}
+              />
               <Image
                 src="/images/logo-mark.png"
                 alt="Ikeduru Economic Development Forum"
                 width={220}
                 height={220}
-                className="h-auto w-40 transition-transform duration-500 group-hover:scale-105 sm:w-48 [filter:drop-shadow(0_0_16px_rgba(246,231,178,0.5))]"
+                className="relative h-auto w-40 transition-transform duration-500 group-hover:scale-105 sm:w-48"
               />
             </Link>
             <p className="mb-1 font-data text-[10px] uppercase tracking-[0.22em] text-gold-bright">

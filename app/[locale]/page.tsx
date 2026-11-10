@@ -65,14 +65,24 @@ export default async function HomePage({
           <Reveal when="load">
             <div className="mb-5 flex flex-col items-center gap-3 sm:mb-8 sm:gap-4">
               <span aria-hidden="true" className="hairline-gold h-px w-14 sm:w-20" />
-              <Image
-                src="/images/logo-mark.png"
-                alt="Ikeduru Economic Development Forum"
-                width={280}
-                height={280}
-                priority
-                className="h-auto w-44 sm:w-56 md:w-64 [filter:drop-shadow(0_0_22px_rgba(246,231,178,0.55))]"
-              />
+              <span className="relative inline-flex">
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-[-14%] rounded-full blur-xl"
+                  style={{
+                    background:
+                      "radial-gradient(ellipse at center, rgba(255,248,230,0.38) 0%, rgba(255,248,230,0.12) 55%, transparent 74%)",
+                  }}
+                />
+                <Image
+                  src="/images/logo-mark.png"
+                  alt="Ikeduru Economic Development Forum"
+                  width={280}
+                  height={280}
+                  priority
+                  className="relative h-auto w-44 sm:w-56 md:w-64"
+                />
+              </span>
               <p className="font-data text-[9px] font-medium uppercase tracking-[0.22em] text-gold-bright sm:text-[10px] sm:tracking-[0.34em]">
                 {t("motto1")} · {t("motto2")} · {t("motto3")} · {t("motto4")}
               </p>
