@@ -42,11 +42,11 @@ export async function Footer({ locale }: { locale: string }) {
                 />
                 <span className="glass-strong relative flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-2xl sm:h-[5.25rem] sm:w-[5.25rem]">
                   <Image
-                    src="/images/logo-mark.png"
-                    alt="IEDF logo mark"
-                    width={72}
-                    height={72}
-                    className="h-14 w-14 sm:h-16 sm:w-16"
+                    src="/images/logo-emblem.png"
+                    alt="IEDF logo"
+                    width={80}
+                    height={80}
+                    className="h-16 w-16 sm:h-20 sm:w-20"
                   />
                 </span>
               </span>

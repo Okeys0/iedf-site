@@ -74,12 +74,12 @@ export default async function HomePage({
                   />
                   <span className="glass-strong relative flex h-24 w-24 items-center justify-center rounded-[1.4rem] sm:h-32 sm:w-32 sm:rounded-[1.75rem] md:h-36 md:w-36">
                     <Image
-                      src="/images/logo-mark.png"
-                      alt=""
-                      width={128}
-                      height={128}
+                      src="/images/logo-emblem.png"
+                      alt="IEDF"
+                      width={144}
+                      height={144}
                       priority
-                      className="h-[4.75rem] w-[4.75rem] sm:h-24 sm:w-24 md:h-28 md:w-28"
+                      className="h-[5rem] w-[5rem] sm:h-26 sm:w-26 md:h-30 md:w-30"
                     />
                   </span>
                 </span>

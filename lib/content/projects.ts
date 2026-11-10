@@ -83,6 +83,7 @@ export const activeProjects: Project[] = [
     title: "G-Prest Imperial Limited (Ginika Feeds)",
     summary: "Agro-allied manufacturing producing high-quality animal feeds for Nigeria's agricultural sector.",
     description: "G-Prest Imperial Limited is an agro-allied manufacturing company based in Ikeduru, Imo State, producing Ginika Feeds—high-quality animal feeds for Nigeria's agricultural sector. The company operates an automated feed mill and focuses on quality production, sustainable practices, and support for livestock farmers.\n\nGinika Feeds contributes to food security, employment creation, and local economic development by adding value within the agricultural value chain. Its operations support farmers and livestock producers with dependable animal-feed products, while also creating opportunities in production, logistics, marketing, and related services.\n\nAs an agro-industrial investment in Ikeduru, G-Prest Imperial Limited strengthens the area's role in agricultural processing and manufacturing, helping to build a more self-reliant local economy.",
+    website: "https://www.ginikafeeds.com",
     status: "active",
     image: {
       src: "/images/project-ginika-feeds.jpg",
