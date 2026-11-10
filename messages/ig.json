@@ -5,6 +5,7 @@
     "aboutIkeduru": "Banyere Ikeduru",
     "projects": "Ọrụ",
     "joinUs": "Soro Anyị",
+    "donate": "Nye Onyinye",
     "news": "Akụkọ",
     "contact": "Kpọtụrụ Anyị",
     "skipToContent": "Gafee gaa n'ọdịnaya",
@@ -186,6 +187,10 @@
     "gasToPowerSummary": "Ịmalite imepụta ike eletrik site na gas maka ebe ụlọ ọrụ ahụ.",
     "okobiTitle": "Mmekọrịta OKOBI",
     "okobiSummary": "Ya na Ọfịs Onye Ndụmọdụ Isi n'ihe gbasara Akụ na Ụba nke Imo Steeti.",
+    "motorParkTitle": "Ama Nwaozuzu Motor Park, Iho",
+    "motorParkSummary": "Ebe njem ụgbọala dị mkpa na-akwado azụmahịa na njikọta n'Ikeduru.",
+    "cancerHospitalTitle": "Ụlọ Ọgwụ Cancer America, Iho, Ikeduru",
+    "cancerHospitalSummary": "Ụlọ ọgwụ ọrụ pụrụ iche na-eweta ọgwụgwọ cancer nso n'obodo.",
     "roadmapEyebrow": "2026 – 2029",
     "roadmapTitle": "Atụmatụ ụzọ",
     "roadmapAccent": "ụzọ",
@@ -387,5 +392,24 @@
     "active": "Na-aga n'ihu",
     "planned": "N'atụmatụ",
     "explore": "Nyochaa"
+  },
+  "donate": {
+    "eyebrow": "Kwado IEDF",
+    "heroTitle": "Kwado mmepe akụ na ụba n'Ikeduru",
+    "heroTitleAccent": "mmepe",
+    "heroSubline": "Onyinye gị na-akwado ọrụ ndị na-emepụta ohere, na-ewu akụrụngwa, na ime ka obodo niile n'Ikeduru sie ike.",
+    "impactEyebrow": "Mmetụta Gị",
+    "impactTitle": "Ebe onyinye gị na-aga",
+    "impactAccent": "aga",
+    "impactP1": "Ntinye ọ bụla na IEDF na-akwado ọrụ ndị na-aga n'ihu na atụmatụ pụrụ iche nke na-ebute mmepe akụ na ụba ma melite ndụ ndị bi n'Ikeduru.",
+    "impactP2": "Site n'ebe ụlọ ọrụ na akụrụngwa ike gas, ruo n'ụlọ ọgwụ, ebe njem, na mmemme obodo — nkwado gị na-eme ka ọrụ ndị a nwee ike.",
+    "areaProjectsTitle": "Ọrụ Na-aga N'ihu",
+    "areaProjectsText": "Kwado akụrụngwa, ahụike, na mmepe ụlọ ọrụ dị ugbu a.",
+    "areaCommunityTitle": "Mmemme Obodo",
+    "areaCommunityText": "Kwado ịzụlite ikike, ọzụzụ nka, na mmepe azụmahịa obodo.",
+    "areaCapacityTitle": "Ikike Nhazi",
+    "areaCapacityText": "Mee ka atụmatụ, nhazi, na mmekọrịta nke na-eme ka mmetụta dịkwuo ukwuu.",
+    "transparencyTitle": "Nghọta Na Ịza Ajụjụ",
+    "transparencyText": "IEDF bụ nzukọ anaghị achọ uru, na-anọpụrụ na ndọrọ ndọrọ ọchịchị. A na-eji onyinye naanị maka ọrụ mmepe akụ na ụba n'Ikeduru. A na-ekerịta akụkọ ego na mmelite ọrụ na ndị na-enye onyinye ma bipụta ya n'ọwa anyị."
   }
 }

@@ -52,6 +52,26 @@ export const activeProjects: Project[] = [
       fit: "contain",
     },
   },
+  {
+    slug: "ama-nwaozuzu-motor-park",
+    title: "Ama Nwaozuzu Motor Park, Iho",
+    summary: "Major transport hub supporting commerce and connectivity in Ikeduru.",
+    status: "active",
+    image: {
+      src: "/images/project-motor-park.jpg",
+      alt: "Ama Nwaozuzu Motor Park transport hub",
+    },
+  },
+  {
+    slug: "ikeduru-cancer-hospital",
+    title: "American Cancer Hospital, Iho, Ikeduru",
+    summary: "Specialist oncology facility bringing cancer care closer to the community.",
+    status: "active",
+    image: {
+      src: "/images/project-cancer-hospital.jpg",
+      alt: "American Cancer Hospital Ikeduru",
+    },
+  },
 ];
 
 export const roadmapAreas = [
@@ -66,4 +86,6 @@ export const projectMessageKeys: Record<string, [string, string]> = {
   "industrial-cluster": ["industrialClusterTitle", "industrialClusterSummary"],
   "gas-to-power": ["gasToPowerTitle", "gasToPowerSummary"],
   "okobi-collaboration": ["okobiTitle", "okobiSummary"],
+  "ama-nwaozuzu-motor-park": ["motorParkTitle", "motorParkSummary"],
+  "ikeduru-cancer-hospital": ["cancerHospitalTitle", "cancerHospitalSummary"],
 };

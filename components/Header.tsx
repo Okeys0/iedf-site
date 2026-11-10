@@ -25,6 +25,7 @@ export function Header() {
     { href: `/${locale}/about`, label: t("about") },
     { href: `/${locale}/about-ikeduru`, label: t("aboutIkeduru") },
     { href: `/${locale}/projects`, label: t("projects") },
+    { href: `/${locale}/donate`, label: t("donate") },
     { href: `/${locale}/news`, label: t("news") },
     { href: `/${locale}/contact`, label: t("contact") },
   ];

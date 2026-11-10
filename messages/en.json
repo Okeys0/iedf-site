@@ -5,6 +5,7 @@
     "aboutIkeduru": "About Ikeduru",
     "projects": "Projects",
     "joinUs": "Join Us",
+    "donate": "Donate",
     "news": "News",
     "contact": "Contact",
     "skipToContent": "Skip to content",
@@ -186,6 +187,10 @@
     "gasToPowerSummary": "Startup gas-to-electricity generation for the cluster.",
     "okobiTitle": "OKOBI Collaboration",
     "okobiSummary": "With Imo State's Office of the Chief Economic Advisor.",
+    "motorParkTitle": "Ama Nwaozuzu Motor Park, Iho",
+    "motorParkSummary": "Major transport hub supporting commerce and connectivity in Ikeduru.",
+    "cancerHospitalTitle": "American Cancer Hospital, Iho, Ikeduru",
+    "cancerHospitalSummary": "Specialist oncology facility bringing cancer care closer to the community.",
     "roadmapEyebrow": "2026 – 2029",
     "roadmapTitle": "The strategic roadmap",
     "roadmapAccent": "roadmap",
@@ -387,5 +392,24 @@
     "active": "Active",
     "planned": "Planned",
     "explore": "Explore"
+  },
+  "donate": {
+    "eyebrow": "Support IEDF",
+    "heroTitle": "Power economic development in Ikeduru",
+    "heroTitleAccent": "development",
+    "heroSubline": "Your donation supports initiatives that create opportunity, build infrastructure, and strengthen communities across Ikeduru.",
+    "impactEyebrow": "Your Impact",
+    "impactTitle": "Where your donation goes",
+    "impactAccent": "goes",
+    "impactP1": "Every contribution to IEDF directly supports active projects and strategic initiatives that drive economic growth and improve quality of life in Ikeduru Local Government Area.",
+    "impactP2": "From the industrial cluster and gas-to-power infrastructure to healthcare facilities, transport hubs, and community programs — your support makes these initiatives possible.",
+    "areaProjectsTitle": "Active Projects",
+    "areaProjectsText": "Fund current infrastructure, healthcare, and industrial development initiatives.",
+    "areaCommunityTitle": "Community Programs",
+    "areaCommunityText": "Support capacity building, skills training, and local enterprise development.",
+    "areaCapacityTitle": "Organizational Capacity",
+    "areaCapacityText": "Enable planning, coordination, and partnerships that amplify impact.",
+    "transparencyTitle": "Transparency & Accountability",
+    "transparencyText": "IEDF is a non-profit, apolitical organization. Donations are used exclusively for economic development work in Ikeduru. Financial reports and project updates are shared with donors and published through our channels."
   }
 }

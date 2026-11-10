@@ -18,7 +18,7 @@ import { Compass, FileDown } from "lucide-react";
 export const metadata: Metadata = {
   title: "Projects & Initiatives",
   description:
-    "IEDF's active initiatives — the Atta-Inyishi-Amaimo industrial cluster, gas-to-power project, and OKOBI collaboration — plus our 1–3 year strategic roadmap.",
+    "IEDF's active initiatives — the Atta-Inyishi-Amaimo industrial cluster, gas-to-power project, OKOBI collaboration, Ama Nwaozuzu Motor Park, and American Cancer Hospital — plus our 1–3 year strategic roadmap.",
 };
 
 /** roadmap slug → message key (labels for the strategic-horizon band). */
