@@ -183,6 +183,7 @@ export default async function HomePage({
               <RevealItem key={project.slug}>
                 <ProjectCard
                   project={project}
+                  locale={locale}
                   titleOverride={keys ? tProjects(keys[0]) : undefined}
                   summaryOverride={keys ? tProjects(keys[1]) : undefined}
                 />

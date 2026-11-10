@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { ArrowRight } from "lucide-react";
 import { Tag } from "./Tag";
@@ -11,6 +12,8 @@ export type Project = {
   slug: string;
   title: string;
   summary: string;
+  description?: string; // Full description for detail page
+  website?: string; // Project website URL (if available)
   status: "active" | "planned";
   /**
    * Optional real photo. If omitted, falls back to an emerald tint slot
@@ -25,6 +28,7 @@ export type Project = {
 
 type ProjectCardProps = {
   project: Project;
+  locale: string;
   /** Translated title/summary (passed by server pages from messages).
    *  When omitted, the English content values render. */
   titleOverride?: string;
@@ -34,8 +38,9 @@ type ProjectCardProps = {
 /**
  * Premium glass project card: spotlight cursor glow, cinematic image
  * zoom, gold rim on hover, and an arrow affordance that slides in.
+ * Wraps in a Link to the project detail page.
  */
-export function ProjectCard({ project, titleOverride, summaryOverride }: ProjectCardProps) {
+export function ProjectCard({ project, locale, titleOverride, summaryOverride }: ProjectCardProps) {
   const t = useTranslations("tags");
   function handleMove(e: React.MouseEvent<HTMLDivElement>) {
     const el = e.currentTarget;
@@ -47,8 +52,9 @@ export function ProjectCard({ project, titleOverride, summaryOverride }: Project
   }
 
   return (
-    <SpotlightCard className="glass-hover group rounded-3xl" glow>
-      <div onMouseMove={handleMove} className="relative flex h-full flex-col">
+    <Link href={`/${locale}/projects/${project.slug}`}>
+      <SpotlightCard className="glass-hover group rounded-3xl" glow>
+        <div onMouseMove={handleMove} className="relative flex h-full flex-col">
         <div className="relative h-44 w-full overflow-hidden rounded-t-3xl">
           {project.image ? (
             <Image
@@ -92,5 +98,6 @@ export function ProjectCard({ project, titleOverride, summaryOverride }: Project
         </div>
       </div>
     </SpotlightCard>
+    </Link>
   );
 }
