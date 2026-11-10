@@ -156,12 +156,13 @@ RESEND_FROM_EMAIL=noreply@iedf.org.ng
 
 ## Next Steps
 
-1. ✅ Review the new transparent logo and copy it to `public/images/logo-mark.png`
-2. ✅ Replace placeholder project images with actual photos
-3. ✅ Set up Paystack account and add test keys
-4. ✅ Run the donations table migration in Neon
-5. ✅ Test donations on `/en/donate` with Paystack test card
-6. ✅ Verify contact form emails are being received at your admin email
+1. ✅ **Logo and images** - Transparent logo and project images are in place
+2. 🔄 **(Optional)** Replace AI-generated project images with actual photos when available
+3. ⏳ **Set up Paystack** - Add test keys to environment variables
+4. ⏳ **Run database migration** - Execute donations table SQL in Neon
+5. ⏳ **Test donations** - Visit `/en/donate` with Paystack test card
+6. ⏳ **Configure email** - Set ADMIN_NOTIFICATION_EMAIL for contact forms
+7. ⏳ **Review and merge PR** - Deploy to production via Vercel
 7. ✅ When ready for production, switch to Paystack live keys
 
 ---
