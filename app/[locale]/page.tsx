@@ -67,19 +67,21 @@ export default async function HomePage({
               <span aria-hidden="true" className="hairline-gold h-px w-14 sm:w-20" />
               <div className="flex w-full max-w-4xl items-center justify-center gap-4 sm:gap-6 md:gap-8">
                 <span className="relative shrink-0">
+                  {/* Gold radial glow behind logo */}
                   <span
                     aria-hidden="true"
-                    className="absolute inset-[-16px] rounded-full opacity-85 blur-xl"
-                    style={{ background: "radial-gradient(circle, rgba(201,152,47,0.5), transparent 70%)" }}
+                    className="absolute inset-[-20px] rounded-3xl opacity-70 blur-2xl"
+                    style={{ background: "radial-gradient(circle, rgba(246,231,178,0.4), rgba(212,167,52,0.25) 60%, transparent 85%)" }}
                   />
-                  <span className="glass-strong relative flex h-24 w-24 items-center justify-center rounded-[1.4rem] sm:h-32 sm:w-32 sm:rounded-[1.75rem] md:h-36 md:w-36">
+                  {/* Subtle light background panel for logo */}
+                  <span className="relative flex items-center justify-center rounded-2xl bg-gradient-to-br from-gold-pale/12 to-gold/6 p-6 backdrop-blur-sm sm:p-8 md:p-10">
                     <Image
-                      src="/images/logo-emblem.png"
+                      src="/images/logo-full.png"
                       alt="IEDF"
-                      width={144}
-                      height={144}
+                      width={160}
+                      height={192}
                       priority
-                      className="h-[5rem] w-[5rem] sm:h-26 sm:w-26 md:h-30 md:w-30"
+                      className="h-auto w-32 sm:w-40 md:w-44"
                     />
                   </span>
                 </span>
