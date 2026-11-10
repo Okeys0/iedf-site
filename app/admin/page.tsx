@@ -1,123 +1,74 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
-type Submission = {
-  id: number;
-  form_type: string;
-  payload: Record<string, unknown>;
-  email: string;
-  created_at: string;
+type Overview = {
+  mail: { total: number; unread: number };
+  members: number;
+  newsletter: number;
+  donations: number;
+  resendConfigured: boolean;
+  fromEmail: string | null;
 };
 
-/**
- * Lightweight internal console for form submissions.
- * Not linked from the public site — open /admin directly.
- * Requires ADMIN_SECRET (same value as the API Bearer token).
- */
-export default function AdminPage() {
-  const [secret, setSecret] = useState("");
-  const [rows, setRows] = useState<Submission[] | null>(null);
+export default function AdminHome() {
+  const [data, setData] = useState<Overview | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
 
-  async function load(e?: FormEvent) {
-    e?.preventDefault();
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await fetch("/api/admin/submissions", {
-        headers: { Authorization: `Bearer ${secret}` },
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setRows(null);
-        setError(data.error || "Request failed");
-        return;
-      }
-      setRows(data.submissions as Submission[]);
-    } catch {
-      setError("Could not reach the admin API.");
-      setRows(null);
-    } finally {
-      setLoading(false);
-    }
-  }
+  useEffect(() => {
+    fetch("/api/admin/overview")
+      .then(async (res) => {
+        const body = await res.json();
+        if (!res.ok) throw new Error(body.error || "Could not load the console.");
+        setData(body);
+      })
+      .catch((err: Error) => setError(err.message));
+  }, []);
+
+  const cards = data
+    ? [
+        { href: "/admin/inbox", label: "Mail", value: data.mail.unread, note: `${data.mail.total} conversations` },
+        { href: "/admin/members", label: "Members", value: data.members, note: "Sign-ups and volunteers" },
+        { href: "/admin/newsletter", label: "Newsletter", value: data.newsletter, note: "Addresses collected" },
+        { href: "/admin/donations", label: "Donations", value: data.donations, note: "Paystack gifts" },
+      ]
+    : [];
 
   return (
-    <main className="min-h-screen bg-night px-6 py-16 text-ink">
-      <div className="mx-auto max-w-5xl">
-        <p className="mb-2 font-data text-[10px] uppercase tracking-[0.28em] text-gold-bright">
-          Internal
-        </p>
-        <h1 className="mb-2 font-display text-4xl italic">Form submissions</h1>
-        <p className="mb-10 max-w-2xl text-sm text-ink-muted">
-          Enter the <code className="text-gold-bright">ADMIN_SECRET</code> from
-          the server environment. This page is not linked in the public navigation.
-        </p>
+    <div className="mx-auto max-w-5xl">
+      <h1 className="font-display text-4xl italic">Overview</h1>
+      <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-muted">
+        Messages from the contact form arrive in Mail. Open one to read it and send a reply through Resend.
+      </p>
 
-        <form onSubmit={load} className="mb-10 flex flex-wrap items-end gap-3">
-          <label className="flex min-w-[16rem] flex-1 flex-col gap-1.5 text-sm">
-            <span className="font-data text-[10px] uppercase tracking-[0.2em] text-ink-faint">
-              Admin secret
-            </span>
-            <input
-              type="password"
-              value={secret}
-              onChange={(e) => setSecret(e.target.value)}
-              required
-              className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2.5 outline-none focus:border-gold/40"
-            />
-          </label>
-          <button
-            type="submit"
-            disabled={loading}
-            className="rounded-full bg-[linear-gradient(115deg,#e8c76a,#c9982f)] px-5 py-2.5 text-sm font-bold text-night disabled:opacity-60"
-          >
-            {loading ? "Loading…" : "Load submissions"}
-          </button>
-        </form>
+      {error && <p className="mt-6 text-sm text-gold-pale">{error}</p>}
 
-        {error && (
-          <p className="mb-6 rounded-2xl border border-red-400/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
-            {error}
-          </p>
-        )}
-
-        {rows && (
-          <div className="space-y-3">
-            <p className="font-data text-[11px] uppercase tracking-[0.2em] text-ink-faint">
-              {rows.length} recent row{rows.length === 1 ? "" : "s"}
-            </p>
-            {rows.length === 0 ? (
-              <p className="text-sm text-ink-muted">No submissions yet.</p>
-            ) : (
-              rows.map((row) => (
-                <article
-                  key={row.id}
-                  className="glass rounded-2xl border border-white/10 p-5"
-                >
-                  <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
-                    <span className="font-data text-[11px] uppercase tracking-[0.18em] text-gold-bright">
-                      {row.form_type}
-                    </span>
-                    <time className="font-data text-[11px] text-ink-faint">
-                      {new Date(row.created_at).toLocaleString()}
-                    </time>
-                  </div>
-                  <p className="mb-2 text-sm">
-                    <span className="text-ink-faint">Email · </span>
-                    {row.email}
-                  </p>
-                  <pre className="overflow-x-auto rounded-xl bg-black/30 p-3 font-data text-[11px] leading-relaxed text-ink-muted">
-                    {JSON.stringify(row.payload, null, 2)}
-                  </pre>
-                </article>
-              ))
-            )}
-          </div>
-        )}
+      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {cards.map((card) => (
+          <Link key={card.href} href={card.href} className="glass rounded-3xl p-6 transition hover:border-gold/40">
+            <p className="font-data text-[10px] uppercase tracking-[0.22em] text-gold-bright">{card.label}</p>
+            <p className="mt-3 font-display text-5xl">{card.value}</p>
+            <p className="mt-2 text-sm text-ink-muted">{card.note}</p>
+          </Link>
+        ))}
       </div>
-    </main>
+
+      {data && (
+        <div className="mt-8 rounded-3xl border border-gold/15 bg-forest/20 p-6 text-sm text-ink-muted">
+          <p className="font-data text-[10px] uppercase tracking-[0.22em] text-gold-bright">Resend</p>
+          {data.resendConfigured ? (
+            <p className="mt-2">
+              Replies will send from <span className="text-ink">{data.fromEmail}</span>.
+            </p>
+          ) : (
+            <p className="mt-2">
+              Add <span className="text-ink">RESEND_API_KEY</span> and a verified{" "}
+              <span className="text-ink">RESEND_FROM_EMAIL</span> before replies can leave the console.
+            </p>
+          )}
+        </div>
+      )}
+    </div>
   );
 }

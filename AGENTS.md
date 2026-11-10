@@ -4,7 +4,7 @@ Living context file for any AI agent (or human) resuming work on this repo.
 **Read this first — it tells you what was done, how things work, and where to
 pick up next.** Keep it updated at the end of every work session.
 
-> Last session completed: **2026-11-09 — Brand green/gold retheme**
+> Last session completed: **2026-11-10 — Admin console with Resend inbox**
 > (Lifted near-black canvas to forest green; stronger gold aurora, glass,
 > header/footer accents). Verified: `npm run build` ✓.
 
@@ -144,6 +144,11 @@ cp .env.example .env.local    # DATABASE_URL, RESEND_*, ADMIN_*, SITE_URL
   escaping; Sanity `community` schema aligned; complete Igbo rewrite (362 keys
   parity); removed obsolete `igbuild/` + `NavDropdown.tsx`; root `app/layout.tsx`
   for fonts/metadata. Build + lint clean.
+- **2026-11-10 — Admin console.** `/admin` sign-in via `ADMIN_SECRET` cookie.
+  Mail inbox for contact submissions, replies through Resend
+  (`RESEND_API_KEY` + verified `RESEND_FROM_EMAIL`), plus members,
+  newsletter, and donations lists. Schema ensured at
+  `lib/db/migrations/admin-mail.sql`.
 - **2026-11-09 — Brand green/gold retheme.** Owner feedback: site read as black,
   brand is gold + green. Lifted `--color-night`/`panel` into forest greens;
   tinted glass + borders with emerald/gold; boosted Aurora orbs and vignette;

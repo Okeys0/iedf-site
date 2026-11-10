@@ -1,26 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
+import { adminNotConfigured, adminSessionToken, isAdminRequest, unauthorized } from "@/lib/admin/auth";
+import { ensureAdminSchema } from "@/lib/admin/schema";
 import { query } from "@/lib/db/client";
 
 /**
  * Internal submissions feed for the admin console.
- * Auth: Authorization: Bearer <ADMIN_SECRET> (or x-admin-secret header).
+ * Auth: signed admin cookie, or Authorization: Bearer <ADMIN_SECRET>.
  */
 export async function GET(request: NextRequest) {
-  const secret = process.env.ADMIN_SECRET;
-  if (!secret) {
-    return NextResponse.json(
-      { error: "ADMIN_SECRET is not configured on the server." },
-      { status: 503 }
-    );
-  }
-
-  const header =
-    request.headers.get("authorization")?.replace(/^Bearer\s+/i, "") ||
-    request.headers.get("x-admin-secret");
-
-  if (!header || header !== secret) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  if (!adminSessionToken()) return adminNotConfigured();
+  if (!isAdminRequest(request)) return unauthorized();
+  await ensureAdminSchema();
 
   try {
     const result = await query<{
