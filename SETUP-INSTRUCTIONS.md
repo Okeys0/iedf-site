@@ -52,6 +52,7 @@ Two new projects have been added to the Projects page:
 Generated illustrative images are located at:
 - Motor Park: `C:\Users\HomePC\.cursor\projects\...\assets\project-motor-park.jpg`
 - Cancer Hospital: `C:\Users\HomePC\.cursor\projects\...\assets\project-cancer-hospital.jpg`
+- Ginika Feeds: `C:\Users\HomePC\.cursor\projects\...\assets\project-ginika-feeds.jpg`
 
 **Action Required:**
 Copy these images to `public/images/` or replace with actual photos:
@@ -59,6 +60,7 @@ Copy these images to `public/images/` or replace with actual photos:
 # These are placeholders - replace with real site photography when available
 public/images/project-motor-park.jpg
 public/images/project-cancer-hospital.jpg
+public/images/project-ginika-feeds.jpg
 ```
 
 ---
