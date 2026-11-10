@@ -71,7 +71,7 @@ export default async function HomePage({
                 width={640}
                 height={632}
                 priority
-                className="h-auto w-[15.5rem] sm:w-[20rem] md:w-[26rem]"
+                className="h-auto w-[13rem] sm:w-[16.5rem] md:w-[21rem]"
               />
               <p className="font-data text-[9px] font-medium uppercase tracking-[0.22em] text-gold-bright sm:text-[10px] sm:tracking-[0.34em]">
                 {t("motto1")} · {t("motto2")} · {t("motto3")} · {t("motto4")}
