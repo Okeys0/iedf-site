@@ -72,6 +72,16 @@ export const activeProjects: Project[] = [
       alt: "American Cancer Hospital Ikeduru",
     },
   },
+  {
+    slug: "ginika-feeds",
+    title: "G-Prest Imperial Limited (Ginika Feeds)",
+    summary: "Agro-allied manufacturing producing high-quality animal feeds for Nigeria's agricultural sector.",
+    status: "active",
+    image: {
+      src: "/images/project-ginika-feeds.jpg",
+      alt: "Ginika Feeds animal feed production facility",
+    },
+  },
 ];
 
 export const roadmapAreas = [
@@ -88,4 +98,5 @@ export const projectMessageKeys: Record<string, [string, string]> = {
   "okobi-collaboration": ["okobiTitle", "okobiSummary"],
   "ama-nwaozuzu-motor-park": ["motorParkTitle", "motorParkSummary"],
   "ikeduru-cancer-hospital": ["cancerHospitalTitle", "cancerHospitalSummary"],
+  "ginika-feeds": ["ginikaFeedsTitle", "ginikaFeedsSummary"],
 };
