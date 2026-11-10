@@ -33,29 +33,23 @@ export async function Footer({ locale }: { locale: string }) {
         <div className="mb-14 grid grid-cols-1 gap-10 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           {/* Brand block — logo-forward */}
           <div>
-            <Link href={`/${locale}`} className="group mb-5 inline-flex flex-col items-start gap-4">
+            <Link href={`/${locale}`} className="group mb-5 inline-flex flex-col items-center gap-4">
               <span className="relative">
+                {/* Soft gold background glow */}
                 <span
                   aria-hidden="true"
-                  className="absolute inset-[-10px] rounded-full opacity-60 blur-xl transition-opacity duration-500 group-hover:opacity-90"
-                  style={{ background: "radial-gradient(circle, rgba(212,167,52,0.5), transparent 70%)" }}
+                  className="absolute inset-[-12px] rounded-3xl opacity-50 blur-xl transition-opacity duration-500 group-hover:opacity-70"
+                  style={{ background: "radial-gradient(circle, rgba(246,231,178,0.35), rgba(212,167,52,0.2) 50%, transparent 80%)" }}
                 />
-                <span className="glass-strong relative flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-2xl sm:h-[5.25rem] sm:w-[5.25rem]">
+                {/* Subtle light background for logo visibility */}
+                <span className="relative flex items-center justify-center rounded-2xl bg-gradient-to-br from-gold-pale/15 to-gold/8 p-6 backdrop-blur-sm">
                   <Image
-                    src="/images/logo-emblem.png"
-                    alt="IEDF logo"
-                    width={80}
-                    height={80}
-                    className="h-16 w-16 sm:h-20 sm:w-20"
+                    src="/images/logo-full.png"
+                    alt="IEDF"
+                    width={140}
+                    height={168}
+                    className="h-auto w-32 transition-transform duration-500 group-hover:scale-105 sm:w-36"
                   />
-                </span>
-              </span>
-              <span>
-                <span className="block font-display text-2xl text-ink sm:text-3xl">
-                  IEDF<span className="text-gold-grad">.</span>
-                </span>
-                <span className="mt-1 block max-w-[18ch] font-display text-[15px] leading-snug italic text-ink-muted sm:max-w-[22ch] sm:text-base">
-                  {t("orgName")}
                 </span>
               </span>
             </Link>

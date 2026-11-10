@@ -76,17 +76,18 @@ export function Header() {
           {/* Brand */}
           <Link href={`/${locale}`} className="group flex items-center gap-2.5" aria-label="IEDF home">
             <span className="relative">
-              <Image
-                src="/images/logo-emblem.png"
-                alt="IEDF"
-                width={40}
-                height={40}
-                className="h-10 w-10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6"
+              {/* Gold glow background */}
+              <span 
+                className="absolute inset-[-4px] rounded-xl bg-gradient-to-br from-gold-pale/20 to-gold/10 opacity-40 blur-sm"
+                aria-hidden="true"
               />
-            </span>
-            <span className="font-display text-xl tracking-wide text-ink">
-              IEDF
-              <span className="text-gold-grad">.</span>
+              <Image
+                src="/images/logo-full.png"
+                alt="IEDF"
+                width={80}
+                height={96}
+                className="relative h-12 w-auto transition-transform duration-500 group-hover:scale-105"
+              />
             </span>
           </Link>
 
