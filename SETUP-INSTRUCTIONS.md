@@ -12,22 +12,9 @@ This document covers the changes made on **Nov 10, 2026**:
 ## 1. Logo Transparency
 
 ### What Changed
-The IEDF logo (`logo-mark.png`) had a white background. A new transparent version has been generated.
+The IEDF logo (`logo-mark.png`) had a white background. A new transparent version has been generated and is now in place at `public/images/logo-mark.png`.
 
-### Action Required
-**Replace the logo file manually:**
-
-1. The new transparent logo is at:
-   ```
-   C:\Users\HomePC\.cursor\projects\c-Users-HomePC-Documents-Jobs-iedf-site\assets\logo-mark-transparent.jpg
-   ```
-
-2. Copy it to:
-   ```
-   c:\Users\HomePC\Documents\Jobs\iedf-site\public\images\logo-mark.png
-   ```
-
-3. **Note:** The generated file is `.jpg` but should be saved as `.png` to preserve transparency. Use an image editor to convert if needed, or ask your designer for a proper transparent PNG.
+✅ **Already completed** - The transparent logo is live in the repository.
 
 ---
 
@@ -49,19 +36,12 @@ Two new projects have been added to the Projects page:
 - **Translations:** English (`en.json`) and Igbo (`ig.json`)
 
 ### Project Images
-Generated illustrative images are located at:
-- Motor Park: `C:\Users\HomePC\.cursor\projects\...\assets\project-motor-park.jpg`
-- Cancer Hospital: `C:\Users\HomePC\.cursor\projects\...\assets\project-cancer-hospital.jpg`
-- Ginika Feeds: `C:\Users\HomePC\.cursor\projects\...\assets\project-ginika-feeds.jpg`
+✅ **Images already in place:**
+- `public/images/project-motor-park.jpg`
+- `public/images/project-cancer-hospital.jpg`
+- `public/images/project-ginika-feeds.jpg`
 
-**Action Required:**
-Copy these images to `public/images/` or replace with actual photos:
-```bash
-# These are placeholders - replace with real site photography when available
-public/images/project-motor-park.jpg
-public/images/project-cancer-hospital.jpg
-public/images/project-ginika-feeds.jpg
-```
+**Note:** These are AI-generated illustrative images. Replace with actual site photography when available for more authentic representation.
 
 ---
 
