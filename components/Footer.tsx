@@ -39,7 +39,7 @@ export async function Footer({ locale }: { locale: string }) {
                 alt="Ikeduru Economic Development Forum"
                 width={200}
                 height={200}
-                className="h-auto w-32 transition-transform duration-500 group-hover:scale-105 sm:w-40"
+                className="h-auto w-20 transition-transform duration-500 group-hover:scale-105 sm:w-28 md:w-32"
               />
             </Link>
             <p className="mb-1 font-data text-[10px] uppercase tracking-[0.22em] text-gold-bright">
