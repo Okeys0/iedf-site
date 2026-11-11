@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { memberSignupSchema } from "@/lib/validations/forms";
 import { query } from "@/lib/db/client";
-import { sendNotificationEmail } from "@/lib/email/client";
+import { escapeHtml, sendNotificationEmail } from "@/lib/email/client";
 
 const interestLabels: Record<string, string> = {
   member: "Become a member",
@@ -50,13 +50,15 @@ export async function POST(request: NextRequest) {
   console.log("[member signup] saved:", parsed.data);
 
   try {
+    const interest =
+      interestLabels[parsed.data.interest] ?? parsed.data.interest;
     await sendNotificationEmail({
-      subject: `New Join Us submission: ${interestLabels[parsed.data.interest] ?? parsed.data.interest}`,
+      subject: `New Join Us submission: ${interest}`,
       html: `
         <h2>New Join Us Submission</h2>
-        <p><strong>Interest:</strong> ${interestLabels[parsed.data.interest] ?? parsed.data.interest}</p>
-        ${parsed.data.name ? `<p><strong>Name:</strong> ${parsed.data.name}</p>` : ""}
-        <p><strong>Email:</strong> ${parsed.data.email}</p>
+        <p><strong>Interest:</strong> ${escapeHtml(interest)}</p>
+        ${parsed.data.name ? `<p><strong>Name:</strong> ${escapeHtml(parsed.data.name)}</p>` : ""}
+        <p><strong>Email:</strong> ${escapeHtml(parsed.data.email)}</p>
       `,
     });
   } catch (err) {

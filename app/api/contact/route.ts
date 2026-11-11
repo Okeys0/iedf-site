@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { contactFormSchema, inquiryRoutingMap } from "@/lib/validations/forms";
 import { query } from "@/lib/db/client";
-import { sendNotificationEmail } from "@/lib/email/client";
+import { escapeHtml, sendNotificationEmail } from "@/lib/email/client";
 
 /**
  * TODO (remaining Milestone 4 work per Development Roadmap):
@@ -50,16 +50,17 @@ export async function POST(request: NextRequest) {
   console.log("[contact submission] saved, would route to:", recipient);
 
   try {
+    const d = parsed.data;
     await sendNotificationEmail({
-      subject: `New ${parsed.data.inquiryType} inquiry from ${parsed.data.name}`,
+      subject: `New ${d.inquiryType} inquiry from ${d.name}`,
       html: `
         <h2>New Contact Form Submission</h2>
-        <p><strong>Inquiry type:</strong> ${parsed.data.inquiryType} (would route to: ${recipient})</p>
-        <p><strong>Name:</strong> ${parsed.data.name}</p>
-        <p><strong>Email:</strong> ${parsed.data.email}</p>
-        ${parsed.data.organization ? `<p><strong>Organization:</strong> ${parsed.data.organization}</p>` : ""}
+        <p><strong>Inquiry type:</strong> ${escapeHtml(d.inquiryType)} (would route to: ${escapeHtml(recipient)})</p>
+        <p><strong>Name:</strong> ${escapeHtml(d.name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(d.email)}</p>
+        ${d.organization ? `<p><strong>Organization:</strong> ${escapeHtml(d.organization)}</p>` : ""}
         <p><strong>Message:</strong></p>
-        <p>${parsed.data.message}</p>
+        <p>${escapeHtml(d.message)}</p>
       `,
     });
   } catch (err) {

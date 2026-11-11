@@ -3,16 +3,26 @@
 Production codebase for the Ikeduru Economic Development Forum website.
 Prepared by Okeys Ononiwu Consulting.
 
+> **AI agents / returning contributors:** start with **[`AGENTS.md`](./AGENTS.md)** —
+> it maps the codebase, records what has been done, and lists where to continue.
+
 This implements **Milestone 1 (Foundations) + a working start on Milestone 2
 (Core Pages)** from the Development Roadmap — the project shell, design
 system, i18n routing, content model, and form architecture are all in place
 and functioning; several pages carry clearly-marked placeholder content
 pending real copy (see "What's Real vs. Placeholder" below).
 
+**November 2026:** full visual overhaul to the dark **"Emerald Luxe"**
+design system — aurora-gradient atmosphere, frosted glass surfaces, gold
+accents, Instrument Serif editorial typography, and cinematic Framer Motion
+throughout. Design-system reference: `app/globals.css`; session history:
+`AGENTS.md`.
+
 ## Stack
 
 - **Next.js 16** (App Router) + **TypeScript**
-- **Tailwind CSS v4** (CSS-based theme — design tokens live in `app/globals.css`)
+- **Tailwind CSS v4** (Emerald Luxe design tokens + glass system in `app/globals.css`)
+- **Framer Motion (`motion`)** — reveals, counters, scroll progress, spotlight hovers
 - **next-intl** for English/Igbo routing (`/en`, `/ig`)
 - **Zod** for form validation
 - **Sanity** (schema defined in `/sanity`, not yet connected to a live project)
@@ -31,17 +41,18 @@ Visit `http://localhost:3000` (redirects to `/en`).
 
 | Area | Status |
 |---|---|
-| Design tokens (color, type, spacing) | **Real** — matches Visual Design System doc exactly |
-| Home page | **Real** — fully built: hero, Milestone Line, featured projects, stats, newsletter CTA |
-| About page | **Structurally real**, narrative/bio content placeholder (needs founding members / exec committee input per Content Outline) |
-| Projects & Initiatives page | **Real** — active initiatives + Strategic Roadmap band, using local content stub. ⚠️ Industrial Cluster and Gas-to-Power cards both have placeholder photos that are **not confirmed to depict the actual Ikeduru sites** — swap before launch (see `lib/content/projects.ts`) |
-| About Ikeduru page | **Partially real** — Autonomous Communities section has real, sourced content (all 29 communities + traditional rulers, provided directly by IEDF). History, Statistics, and LGA Leadership sections still structural-only pending named sourcing (see Content Outline Section 3) |
-| Join Us page | **Real forms**, placeholder body copy |
-| News page | **Structural only** — populates once Sanity `newsPost` documents exist |
-| Contact page | **Real** — full dynamic form, inquiry-type routing, working API route |
-| Forms backend | **Real** — all three forms (Contact, Member Signup, Newsletter) write to Postgres (Neon) AND send an internal notification email via Resend. Tested end-to-end against a real database; email-sending code is correct per Resend's current SDK but untested against a real Resend account/API key (that requires signing up, which I can't do on your behalf) |
-| Sanity CMS | **Schema only** — not yet connected to a live Sanity project (see below) |
-| Igbo translations | **Machine-assisted draft** — flagged for native-speaker review before launch, see note below |
+| Design tokens (color, type, spacing) | **Real** — Emerald Luxe system in `app/globals.css` |
+| Home page | **Real** — hero, marquee, featured projects, pillars, numeric Momentum counters, milestones, newsletter |
+| About + Leadership | **Real** — founding narrative, vision/mission, 9 exec bios + photos |
+| Projects & Initiatives | **Real** — 3 actives + roadmap. ⚠️ Industrial Cluster and Gas-to-Power photos are still illustrative — swap for confirmed site photography (`lib/content/projects.ts`) |
+| About Ikeduru | **Real** — gallery (2 photos), sourced history, statistics, HQ (apolitical), 29 communities, economic activities + source list |
+| Join Us | **Real** — member/volunteer + giving-**intent** forms (live payments pending bank/processor) |
+| News | **Real** — 3 milestone posts via `lib/content/news.ts` (+ article routes); Sanity optional later |
+| Contact | **Real** — inquiry form + API |
+| Privacy | **Real** — full policy covering forms / Neon / Resend (formal counsel sign-off optional) |
+| Forms backend | **Real** — Zod → Neon → Resend notify; admin console at `/admin` (`ADMIN_SECRET`) |
+| Sanity CMS | **Schema only** — not connected to a live project yet |
+| Igbo | **Full rewrite** in `messages/ig.json` (key-parity with EN) — still recommend a native-speaker polish before heavy marketing |
 
 ## Connecting Resend (email notifications)
 
@@ -109,12 +120,10 @@ sanity/
   schemaTypes/       → Sanity Studio schema definitions (see "Connecting Sanity")
 ```
 
-## Next Steps (per Development Roadmap)
+## Next Steps (owner / ops)
 
-- **Milestone 2:** finish full page content (About narrative, leadership bios)
-- **Milestone 3:** About Ikeduru content (pending sourcing), Join Us copy, full
-  Support IEDF giving-intent flow
-- **Milestone 4:** wire Postgres + Resend into the three form routes, add
-  Igbo translations for launch-scope pages once reviewed, News post template
-- **Milestone 5:** QA, accessibility audit, performance testing on throttled
-  network, legal review pass
+- Set production env vars (`DATABASE_URL`, `RESEND_*`, `ADMIN_*`, `NEXT_PUBLIC_SITE_URL`)
+- Swap illustrative project photos; expand the Ikeduru gallery
+- Native Igbo speaker polish of `messages/ig.json`
+- Optional: Sanity studio, Turnstile, newsletter ESP, live giving, investor PDF,
+  social links, accessibility / performance audit

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { newsletterSchema } from "@/lib/validations/forms";
 import { query } from "@/lib/db/client";
-import { sendNotificationEmail } from "@/lib/email/client";
+import { escapeHtml, sendNotificationEmail } from "@/lib/email/client";
 
 /**
  * Per Technical Architecture Section 5, the long-term plan is to post
@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
   try {
     await sendNotificationEmail({
       subject: "New newsletter signup",
-      html: `<h2>New Newsletter Signup</h2><p><strong>Email:</strong> ${parsed.data.email}</p>`,
+      html: `<h2>New Newsletter Signup</h2><p><strong>Email:</strong> ${escapeHtml(parsed.data.email)}</p>`,
     });
   } catch (err) {
     console.error("[newsletter signup] notification email failed:", err);

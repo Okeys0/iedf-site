@@ -6,22 +6,27 @@ type TagProps = {
 };
 
 /**
- * "Active" uses a deliberately darkened gold text color (#8a6a1f) against
- * a light gold-tint background — the raw logo gold alone does not clear
- * the WCAG AA 4.5:1 text-contrast minimum, so this is an intentional
- * accessibility adjustment (see Technical Architecture, Section 7).
+ * Status chips, redesigned for the dark glass system.
+ * "Active": live mint/gold glow dot + gold text on glass.
+ * "Planned": muted glass with a dim dot.
  */
 export function Tag({ variant, children }: TagProps) {
   if (variant === "active") {
     return (
-      <span className="inline-block rounded-full bg-[var(--color-gold-tint)] px-2.5 py-1 font-mono text-[11px] font-medium text-[var(--color-gold-text)]">
+      <span className="inline-flex items-center gap-1.5 rounded-full border border-gold/30 bg-gold/10 px-2.5 py-1 font-data text-[10px] font-medium uppercase tracking-[0.18em] text-gold-bright backdrop-blur-sm">
+        <span
+          aria-hidden="true"
+          className="h-1.5 w-1.5 rounded-full bg-mint"
+          style={{ animation: "pulse-dot 2.4s ease-in-out infinite" }}
+        />
         {children}
       </span>
     );
   }
 
   return (
-    <span className="inline-block rounded-full border border-white/40 px-2.5 py-1 font-mono text-[11px] font-medium text-white">
+    <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/5 px-2.5 py-1 font-data text-[10px] font-medium uppercase tracking-[0.18em] text-ink-faint backdrop-blur-sm">
+      <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-ink-faint/70" />
       {children}
     </span>
   );
